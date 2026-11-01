@@ -23,7 +23,19 @@ dist-ssr
 *.sln
 *.sw?
 
-# Environment
+# Environment & API Keys / Secrets
 .env
 .env.*
+*.env
+*.env.*
 !.env.example
+*.key
+*.pem
+*.cert
+api_key*
+apikey*
+*secret*
+*token*
+credentials.json
+google-services.json
+GoogleService-Info.plist
