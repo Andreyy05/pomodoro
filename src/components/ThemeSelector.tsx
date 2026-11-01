@@ -16,10 +16,28 @@ export const ThemeSelector: React.FC<ThemeSelectorProps> = ({ currentTheme, onTh
       previewColors: ['#a78bfa', '#f472b6'],
     },
     {
+      id: 'minecraft',
+      name: 'Minecraft',
+      icon: '⛏️',
+      previewColors: ['#4ade80', '#854d0e'],
+    },
+    {
       id: 'retro',
       name: '80s Retro',
       icon: '🕹️',
       previewColors: ['#06b6d4', '#ec4899'],
+    },
+    {
+      id: 'sakura',
+      name: 'Sakura Zen',
+      icon: '🌸',
+      previewColors: ['#f472b6', '#fda4af'],
+    },
+    {
+      id: 'sunset',
+      name: 'Miami Dusk',
+      icon: '🌅',
+      previewColors: ['#f97316', '#c084fc'],
     },
     {
       id: 'coffee',
@@ -34,6 +52,18 @@ export const ThemeSelector: React.FC<ThemeSelectorProps> = ({ currentTheme, onTh
       previewColors: ['#10b981', '#065f46'],
     },
     {
+      id: 'nordic',
+      name: 'Nordic Frost',
+      icon: '❄️',
+      previewColors: ['#38bdf8', '#0284c7'],
+    },
+    {
+      id: 'dracula',
+      name: 'Dracula',
+      icon: '🧛',
+      previewColors: ['#bd93f9', '#ff79c6'],
+    },
+    {
       id: 'cyber',
       name: 'Cyberpunk',
       icon: '🌌',
@@ -45,7 +75,7 @@ export const ThemeSelector: React.FC<ThemeSelectorProps> = ({ currentTheme, onTh
     <div className="theme-selector-widget glass-card">
       <div className="theme-header">
         <Palette size={18} className="accent-icon" />
-        <span className="theme-title">Visual Theme</span>
+        <span className="theme-title">Visual Themes ({themes.length})</span>
       </div>
       <div className="theme-grid">
         {themes.map((t) => (

@@ -1,10 +1,20 @@
 export type TimerMode = 'focus' | 'shortBreak' | 'longBreak';
 
-export type Theme = 'lofi' | 'retro' | 'coffee' | 'matcha' | 'cyber';
+export type Theme = 
+  | 'lofi' 
+  | 'retro' 
+  | 'coffee' 
+  | 'matcha' 
+  | 'cyber' 
+  | 'minecraft' 
+  | 'sakura' 
+  | 'sunset' 
+  | 'nordic' 
+  | 'dracula';
 
 export type AlarmSound = 'retro8bit' | 'lofiBell' | 'digitalWatch' | 'fanfare' | 'marimba';
 
-export type AmbientSound = 'none' | 'rain' | 'vinyl' | 'lofiChords' | 'whiteNoise';
+export type AmbientSound = 'none' | 'c418' | 'rain' | 'vinyl' | 'lofiChords' | 'whiteNoise';
 
 export interface Task {
   id: string;

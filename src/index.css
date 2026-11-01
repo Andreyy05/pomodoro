@@ -115,6 +115,116 @@
   --timer-font: 'Space Grotesk', sans-serif;
 }
 
+/* ⛏️ Minecraft Overworld Theme */
+[data-theme='minecraft'] {
+  --bg-main: #111a0c;
+  --bg-gradient: radial-gradient(circle at 50% 20%, #253818 0%, #15220f 50%, #0b1307 100%);
+  --card-bg: rgba(26, 42, 18, 0.82);
+  --card-border: rgba(74, 222, 128, 0.3);
+  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.75), inset 0 0 0 2px rgba(90, 154, 45, 0.18);
+
+  --text-main: #f0fdf4;
+  --text-muted: #86efac;
+  --text-dim: #4ade80;
+
+  --accent-primary: #4ade80;
+  --accent-secondary: #ca8a04;
+  --accent-glow: rgba(74, 222, 128, 0.4);
+
+  --timer-bg: rgba(74, 222, 128, 0.08);
+  --timer-ring-bg: rgba(255, 255, 255, 0.08);
+  --timer-ring-fill: #4ade80;
+  --timer-font: 'Press Start 2P', monospace;
+}
+
+/* 🌸 Sakura Zen Theme */
+[data-theme='sakura'] {
+  --bg-main: #180e15;
+  --bg-gradient: radial-gradient(circle at 40% 18%, #36172a 0%, #200f1c 50%, #10060e 100%);
+  --card-bg: rgba(46, 22, 38, 0.7);
+  --card-border: rgba(244, 114, 182, 0.3);
+  --card-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.55);
+
+  --text-main: #fdf2f8;
+  --text-muted: #f472b6;
+  --text-dim: #db2777;
+
+  --accent-primary: #f472b6;
+  --accent-secondary: #fda4af;
+  --accent-glow: rgba(244, 114, 182, 0.4);
+
+  --timer-bg: rgba(244, 114, 182, 0.1);
+  --timer-ring-bg: rgba(255, 255, 255, 0.08);
+  --timer-ring-fill: #f472b6;
+  --timer-font: 'Outfit', sans-serif;
+}
+
+/* 🌅 Miami Dusk / Sunset Theme */
+[data-theme='sunset'] {
+  --bg-main: #180c1b;
+  --bg-gradient: linear-gradient(180deg, #3d1434 0%, #230d2d 45%, #0c0413 100%);
+  --card-bg: rgba(43, 17, 44, 0.72);
+  --card-border: rgba(249, 115, 22, 0.3);
+  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7);
+
+  --text-main: #fff7ed;
+  --text-muted: #fb923c;
+  --text-dim: #c084fc;
+
+  --accent-primary: #f97316;
+  --accent-secondary: #c084fc;
+  --accent-glow: rgba(249, 115, 22, 0.4);
+
+  --timer-bg: rgba(249, 115, 22, 0.1);
+  --timer-ring-bg: rgba(255, 255, 255, 0.08);
+  --timer-ring-fill: #f97316;
+  --timer-font: 'Space Grotesk', sans-serif;
+}
+
+/* ❄️ Nordic Frost Theme */
+[data-theme='nordic'] {
+  --bg-main: #0a1320;
+  --bg-gradient: radial-gradient(circle at 50% 15%, #13243d 0%, #0c182a 55%, #050b14 100%);
+  --card-bg: rgba(18, 33, 56, 0.72);
+  --card-border: rgba(56, 189, 248, 0.25);
+  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.65);
+
+  --text-main: #f0f9ff;
+  --text-muted: #38bdf8;
+  --text-dim: #0284c7;
+
+  --accent-primary: #38bdf8;
+  --accent-secondary: #7dd3fc;
+  --accent-glow: rgba(56, 189, 248, 0.35);
+
+  --timer-bg: rgba(56, 189, 248, 0.1);
+  --timer-ring-bg: rgba(255, 255, 255, 0.08);
+  --timer-ring-fill: #38bdf8;
+  --timer-font: 'Outfit', sans-serif;
+}
+
+/* 🧛 Dracula Dark Theme */
+[data-theme='dracula'] {
+  --bg-main: #191a24;
+  --bg-gradient: radial-gradient(circle at 35% 20%, #282a36 0%, #1e1f29 60%, #12131a 100%);
+  --card-bg: rgba(40, 42, 54, 0.85);
+  --card-border: rgba(189, 147, 249, 0.35);
+  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7);
+
+  --text-main: #f8f8f2;
+  --text-muted: #bd93f9;
+  --text-dim: #ff79c6;
+
+  --accent-primary: #bd93f9;
+  --accent-secondary: #50fa7b;
+  --accent-glow: rgba(189, 147, 249, 0.4);
+
+  --timer-bg: rgba(189, 147, 249, 0.1);
+  --timer-ring-bg: rgba(255, 255, 255, 0.08);
+  --timer-ring-fill: #50fa7b;
+  --timer-font: 'Space Grotesk', sans-serif;
+}
+
 /* ==========================================================================
    BASE & RESET
    ========================================================================== */
@@ -447,7 +557,8 @@ button {
   user-select: none;
 }
 
-[data-theme='retro'] .time-display {
+[data-theme='retro'] .time-display,
+[data-theme='minecraft'] .time-display {
   font-size: 2.2rem;
   letter-spacing: 2px;
 }

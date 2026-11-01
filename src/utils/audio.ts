@@ -218,7 +218,9 @@ class AmbientGenerator {
     this.isPlaying = true;
     this.currentType = type;
 
-    if (type === 'rain') {
+    if (type === 'c418') {
+      this.setupC418();
+    } else if (type === 'rain') {
       this.setupRain();
     } else if (type === 'vinyl') {
       this.setupVinyl();
@@ -429,6 +431,172 @@ class AmbientGenerator {
 
     this.stopFns.push(() => {
       clearTimeout(chordTimer);
+    });
+  }
+
+  private setupC418() {
+    if (!this.ctx || !this.masterGain) return;
+    const ctx = this.ctx;
+
+    // Ambient delay / reverb effect unit for spacious Minecraft feel
+    const delay = ctx.createDelay();
+    delay.delayTime.setValueAtTime(0.42, ctx.currentTime);
+
+    const delayFeedback = ctx.createGain();
+    delayFeedback.gain.setValueAtTime(0.38, ctx.currentTime);
+
+    const delayFilter = ctx.createBiquadFilter();
+    delayFilter.type = 'lowpass';
+    delayFilter.frequency.setValueAtTime(1400, ctx.currentTime);
+
+    delay.connect(delayFilter);
+    delayFilter.connect(delayFeedback);
+    delayFeedback.connect(delay);
+    delayFilter.connect(this.masterGain);
+
+    // Warm background drone pad (dreamy Minecraft horizon)
+    const droneOsc1 = ctx.createOscillator();
+    const droneOsc2 = ctx.createOscillator();
+    const droneGain = ctx.createGain();
+    const droneFilter = ctx.createBiquadFilter();
+
+    droneOsc1.type = 'sine';
+    droneOsc1.frequency.setValueAtTime(73.42, ctx.currentTime); // D2
+    droneOsc2.type = 'triangle';
+    droneOsc2.frequency.setValueAtTime(146.83, ctx.currentTime); // D3
+
+    droneFilter.type = 'lowpass';
+    droneFilter.frequency.setValueAtTime(450, ctx.currentTime);
+
+    droneGain.gain.setValueAtTime(0.04, ctx.currentTime);
+
+    droneOsc1.connect(droneFilter);
+    droneOsc2.connect(droneFilter);
+    droneFilter.connect(droneGain);
+    droneGain.connect(this.masterGain);
+
+    droneOsc1.start();
+    droneOsc2.start();
+
+    // Helper: Play a warm felt acoustic piano note
+    const playPianoNote = (freq: number, delaySec: number, velocity: number = 0.25) => {
+      if (!this.isPlaying || !this.ctx || !this.masterGain) return;
+      const noteTime = ctx.currentTime + delaySec;
+
+      // Primary sine tone
+      const osc1 = ctx.createOscillator();
+      osc1.type = 'sine';
+      osc1.frequency.setValueAtTime(freq, noteTime);
+
+      // Subtle warm triangle overtone
+      const osc2 = ctx.createOscillator();
+      osc2.type = 'triangle';
+      osc2.frequency.setValueAtTime(freq, noteTime);
+
+      // Soft tone lowpass filter
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(1600, noteTime);
+      filter.frequency.exponentialRampToValueAtTime(600, noteTime + 2.5);
+
+      const noteGain = ctx.createGain();
+      // Gentle soft hammer attack
+      noteGain.gain.setValueAtTime(0.0001, noteTime);
+      noteGain.gain.linearRampToValueAtTime(velocity, noteTime + 0.02);
+      // Long nostalgic decay
+      noteGain.gain.exponentialRampToValueAtTime(0.0001, noteTime + 3.4);
+
+      osc1.connect(filter);
+      osc2.connect(filter);
+      filter.connect(noteGain);
+
+      // Direct dry signal
+      noteGain.connect(this.masterGain);
+      // Wet delay signal
+      noteGain.connect(delay);
+
+      osc1.start(noteTime);
+      osc2.start(noteTime);
+      osc1.stop(noteTime + 3.6);
+      osc2.stop(noteTime + 3.6);
+    };
+
+    // Melodic phrases inspired by C418's "Sweden" and "Wet Hands"
+    const phrases = [
+      // Phrase 1: Iconic Sweden opening progression (D Maj)
+      [
+        { freq: 146.83, delay: 0.0, vel: 0.28 },  // D3 bass
+        { freq: 220.00, delay: 0.05, vel: 0.22 }, // A3
+        { freq: 369.99, delay: 0.8, vel: 0.26 },  // F#4
+        { freq: 440.00, delay: 1.6, vel: 0.24 },  // A4
+        { freq: 587.33, delay: 2.5, vel: 0.30 },  // D5
+        { freq: 554.37, delay: 3.8, vel: 0.22 },  // C#5
+        { freq: 493.88, delay: 4.8, vel: 0.25 },  // B4
+        { freq: 440.00, delay: 5.9, vel: 0.22 },  // A4
+        { freq: 369.99, delay: 7.2, vel: 0.24 },  // F#4
+      ],
+      // Phrase 2: G Maj7 Cadence (Wet Hands feel)
+      [
+        { freq: 98.00,  delay: 0.0, vel: 0.30 },  // G2 bass
+        { freq: 146.83, delay: 0.06, vel: 0.22 }, // D3
+        { freq: 493.88, delay: 0.9, vel: 0.26 },  // B4
+        { freq: 587.33, delay: 2.0, vel: 0.28 },  // D5
+        { freq: 739.99, delay: 3.2, vel: 0.24 },  // F#5
+        { freq: 659.25, delay: 4.4, vel: 0.22 },  // E5
+        { freq: 587.33, delay: 5.6, vel: 0.25 },  // D5
+        { freq: 493.88, delay: 7.0, vel: 0.22 },  // B4
+      ],
+      // Phrase 3: B Minor nostalgic lullaby
+      [
+        { freq: 123.47, delay: 0.0, vel: 0.28 },  // B2 bass
+        { freq: 185.00, delay: 0.05, vel: 0.22 }, // F#3
+        { freq: 587.33, delay: 0.9, vel: 0.27 },  // D5
+        { freq: 554.37, delay: 2.1, vel: 0.23 },  // C#5
+        { freq: 440.00, delay: 3.3, vel: 0.25 },  // A4
+        { freq: 369.99, delay: 4.5, vel: 0.22 },  // F#4
+        { freq: 329.63, delay: 5.7, vel: 0.24 },  // E4
+        { freq: 293.66, delay: 7.1, vel: 0.26 },  // D4
+      ],
+      // Phrase 4: A Sus Resolution
+      [
+        { freq: 110.00, delay: 0.0, vel: 0.28 },  // A2 bass
+        { freq: 164.81, delay: 0.06, vel: 0.22 }, // E3
+        { freq: 369.99, delay: 0.9, vel: 0.24 },  // F#4
+        { freq: 329.63, delay: 2.0, vel: 0.22 },  // E4
+        { freq: 293.66, delay: 3.4, vel: 0.26 },  // D4
+        { freq: 220.00, delay: 4.8, vel: 0.22 },  // A3
+        { freq: 293.66, delay: 6.2, vel: 0.28 },  // D4
+      ],
+    ];
+
+    let phraseIdx = 0;
+    let sequenceTimer: number;
+
+    const playNextPhrase = () => {
+      if (!this.isPlaying || !this.ctx || !this.masterGain) return;
+
+      const currentNotes = phrases[phraseIdx];
+      phraseIdx = (phraseIdx + 1) % phrases.length;
+
+      currentNotes.forEach(({ freq, delay, vel }) => {
+        playPianoNote(freq, delay, vel);
+      });
+
+      // Pause of ~9.5 seconds between phrases for that authentic spacious Minecraft contemplation
+      sequenceTimer = window.setTimeout(playNextPhrase, 9500);
+    };
+
+    playNextPhrase();
+
+    this.stopFns.push(() => {
+      clearTimeout(sequenceTimer);
+      droneOsc1.stop();
+      droneOsc2.stop();
+      droneOsc1.disconnect();
+      droneOsc2.disconnect();
+      delay.disconnect();
+      delayFilter.disconnect();
+      delayFeedback.disconnect();
     });
   }
 }

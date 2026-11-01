@@ -21,6 +21,7 @@ export const AmbientPlayer: React.FC<AmbientPlayerProps> = ({
 }) => {
   const soundOptions: { id: AmbientSound; label: string; icon: React.ReactNode }[] = [
     { id: 'none', label: 'Mute', icon: <VolumeX size={16} /> },
+    { id: 'c418', label: 'C418 ⛏️', icon: <span style={{ fontSize: '14px', lineHeight: 1 }}>🟩</span> },
     { id: 'rain', label: 'Rain', icon: <CloudRain size={16} /> },
     { id: 'vinyl', label: 'Vinyl', icon: <Disc size={16} /> },
     { id: 'lofiChords', label: 'Lo-Fi', icon: <Music size={16} /> },
