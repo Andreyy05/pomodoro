@@ -111,6 +111,23 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   <span>cycles</span>
                 </div>
               </div>
+
+              <div className="duration-input-card">
+                <label htmlFor="daily-goal-input">Denní cíl (Daily Goal)</label>
+                <div className="input-with-suffix">
+                  <input
+                    id="daily-goal-input"
+                    type="number"
+                    min="1"
+                    max="30"
+                    value={settings.dailyGoal || 8}
+                    onChange={(e) =>
+                      onUpdateSettings({ dailyGoal: Math.max(1, parseInt(e.target.value) || 8) })
+                    }
+                  />
+                  <span>🍅</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -181,6 +198,18 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               <span>Preferences</span>
             </div>
             <div className="checkbox-options">
+              <label className="checkbox-row">
+                <input
+                  type="checkbox"
+                  checked={settings.focusBuddyEnabled}
+                  onChange={(e) => onUpdateSettings({ focusBuddyEnabled: e.target.checked })}
+                />
+                <div className="checkbox-text">
+                  <span className="checkbox-title">🌱 Focus Buddy (Rostoucí Tamagotchi)</span>
+                  <span className="checkbox-sub">Zobrazit roztomilou rostlinku, která roste s každým dokončeným pomodorem</span>
+                </div>
+              </label>
+
               <label className="checkbox-row">
                 <input
                   type="checkbox"

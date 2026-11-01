@@ -14,7 +14,16 @@ export type Theme =
 
 export type AlarmSound = 'retro8bit' | 'lofiBell' | 'digitalWatch' | 'fanfare' | 'marimba';
 
-export type AmbientSound = 'none' | 'c418' | 'rain' | 'vinyl' | 'lofiChords' | 'whiteNoise';
+export type AmbientSound = 
+  | 'none' 
+  | 'c418' 
+  | 'rain' 
+  | 'vinyl' 
+  | 'lofiChords' 
+  | 'campfire'
+  | 'ocean'
+  | 'crickets'
+  | 'whiteNoise';
 
 export interface Task {
   id: string;
@@ -30,6 +39,7 @@ export interface PomodoroSettings {
   shortBreakDuration: number; // in minutes
   longBreakDuration: number; // in minutes
   longBreakInterval: number; // sessions before long break
+  dailyGoal: number; // daily target pomodoros
   autoStartBreaks: boolean;
   autoStartPomodoros: boolean;
   alarmSound: AlarmSound;
@@ -38,4 +48,7 @@ export interface PomodoroSettings {
   ambientVolume: number; // 0.0 to 1.0
   tickingSound: boolean;
   theme: Theme;
+  focusBuddyEnabled: boolean;
 }
+
+export type DailyStats = Record<string, number>; // date "YYYY-MM-DD" -> count of pomodoros

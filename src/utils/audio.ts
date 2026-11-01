@@ -224,6 +224,12 @@ class AmbientGenerator {
       this.setupRain();
     } else if (type === 'vinyl') {
       this.setupVinyl();
+    } else if (type === 'campfire') {
+      this.setupCampfire();
+    } else if (type === 'ocean') {
+      this.setupOcean();
+    } else if (type === 'crickets') {
+      this.setupCrickets();
     } else if (type === 'lofiChords') {
       this.setupLofiChords();
     } else if (type === 'whiteNoise') {
@@ -599,6 +605,176 @@ class AmbientGenerator {
       delayFeedback.disconnect();
     });
   }
+
+  private setupCampfire() {
+    if (!this.ctx || !this.masterGain) return;
+    const ctx = this.ctx;
+
+    // Low rumble of burning wood embers
+    const noiseBuffer = this.createNoiseBuffer(4);
+    const noiseSource = ctx.createBufferSource();
+    noiseSource.buffer = noiseBuffer;
+    noiseSource.loop = true;
+
+    const rumbleFilter = ctx.createBiquadFilter();
+    rumbleFilter.type = 'lowpass';
+    rumbleFilter.frequency.setValueAtTime(220, ctx.currentTime);
+
+    const rumbleGain = ctx.createGain();
+    rumbleGain.gain.setValueAtTime(0.24, ctx.currentTime);
+
+    noiseSource.connect(rumbleFilter);
+    rumbleFilter.connect(rumbleGain);
+    rumbleGain.connect(this.masterGain);
+    noiseSource.start();
+
+    // Wood pop and crackle generator
+    let crackleTimer: number;
+    const scheduleCrackle = () => {
+      if (!this.isPlaying || !this.ctx || !this.masterGain) return;
+      const now = ctx.currentTime;
+
+      // Realistic sharp wood pop
+      const osc = ctx.createOscillator();
+      const popGain = ctx.createGain();
+      const filter = ctx.createBiquadFilter();
+
+      const freq = 500 + Math.random() * 2200;
+      osc.type = Math.random() > 0.4 ? 'square' : 'sawtooth';
+      osc.frequency.setValueAtTime(freq, now);
+
+      filter.type = 'bandpass';
+      filter.frequency.setValueAtTime(freq, now);
+      filter.Q.setValueAtTime(3.0, now);
+
+      const popVol = 0.08 + Math.random() * 0.16;
+      popGain.gain.setValueAtTime(popVol, now);
+      popGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.035);
+
+      osc.connect(filter);
+      filter.connect(popGain);
+      popGain.connect(this.masterGain);
+
+      osc.start(now);
+      osc.stop(now + 0.04);
+
+      const nextMs = 60 + Math.random() * 320;
+      crackleTimer = window.setTimeout(scheduleCrackle, nextMs);
+    };
+
+    scheduleCrackle();
+
+    this.stopFns.push(() => {
+      clearTimeout(crackleTimer);
+      noiseSource.stop();
+      noiseSource.disconnect();
+    });
+  }
+
+  private setupOcean() {
+    if (!this.ctx || !this.masterGain) return;
+    const ctx = this.ctx;
+
+    const noiseBuffer = this.createNoiseBuffer(6);
+    const noiseSource = ctx.createBufferSource();
+    noiseSource.buffer = noiseBuffer;
+    noiseSource.loop = true;
+
+    // Dual filters for water texture
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(350, ctx.currentTime);
+    filter.Q.setValueAtTime(1.2, ctx.currentTime);
+
+    const waveGain = ctx.createGain();
+    waveGain.gain.setValueAtTime(0.15, ctx.currentTime);
+
+    noiseSource.connect(filter);
+    filter.connect(waveGain);
+    waveGain.connect(this.masterGain);
+    noiseSource.start();
+
+    // LFO to create slow 8-second wave rise and retreat
+    const lfo = ctx.createOscillator();
+    lfo.type = 'sine';
+    lfo.frequency.setValueAtTime(0.12, ctx.currentTime); // ~8.3 sec cycle
+
+    const lfoGain = ctx.createGain();
+    lfoGain.gain.setValueAtTime(0.22, ctx.currentTime);
+
+    lfo.connect(lfoGain);
+    lfoGain.connect(waveGain.gain);
+    lfo.start();
+
+    this.stopFns.push(() => {
+      lfo.stop();
+      lfo.disconnect();
+      noiseSource.stop();
+      noiseSource.disconnect();
+    });
+  }
+
+  private setupCrickets() {
+    if (!this.ctx || !this.masterGain) return;
+    const ctx = this.ctx;
+
+    // Soft night breeze
+    const noiseBuffer = this.createNoiseBuffer(5);
+    const noiseSource = ctx.createBufferSource();
+    noiseSource.buffer = noiseBuffer;
+    noiseSource.loop = true;
+
+    const breezeFilter = ctx.createBiquadFilter();
+    breezeFilter.type = 'bandpass';
+    breezeFilter.frequency.setValueAtTime(900, ctx.currentTime);
+    breezeFilter.Q.setValueAtTime(0.5, ctx.currentTime);
+
+    const breezeGain = ctx.createGain();
+    breezeGain.gain.setValueAtTime(0.06, ctx.currentTime);
+
+    noiseSource.connect(breezeFilter);
+    breezeFilter.connect(breezeGain);
+    breezeGain.connect(this.masterGain);
+    noiseSource.start();
+
+    // Crickets chirp generator
+    let chirpTimer: number;
+    const playChirpGroup = () => {
+      if (!this.isPlaying || !this.ctx || !this.masterGain) return;
+      const now = ctx.currentTime;
+
+      // Group of 3 quick chirps
+      for (let i = 0; i < 3; i++) {
+        const chirpTime = now + i * 0.08;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(4700 + Math.random() * 300, chirpTime);
+
+        gain.gain.setValueAtTime(0.05, chirpTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, chirpTime + 0.05);
+
+        osc.connect(gain);
+        gain.connect(this.masterGain);
+
+        osc.start(chirpTime);
+        osc.stop(chirpTime + 0.06);
+      }
+
+      const nextDelay = 1200 + Math.random() * 1800;
+      chirpTimer = window.setTimeout(playChirpGroup, nextDelay);
+    };
+
+    playChirpGroup();
+
+    this.stopFns.push(() => {
+      clearTimeout(chirpTimer);
+      noiseSource.stop();
+      noiseSource.disconnect();
+    });
+  }
 }
 
 export const ambientPlayer = new AmbientGenerator();
+
