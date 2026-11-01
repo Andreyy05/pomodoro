@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    POMODORO FOCUS - CSS DESIGN SYSTEM & THEMES
    ========================================================================== */
 
@@ -225,6 +225,50 @@
   --timer-font: 'Space Grotesk', sans-serif;
 }
 
+/* 🌊 Deep Ocean Theme */
+[data-theme='ocean'] {
+  --bg-main: #040d1a;
+  --bg-gradient: radial-gradient(circle at 45% 20%, #082846 0%, #04162a 55%, #020912 100%);
+  --card-bg: rgba(6, 26, 48, 0.78);
+  --card-border: rgba(0, 229, 255, 0.3);
+  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.75), 0 0 20px rgba(0, 229, 255, 0.15);
+
+  --text-main: #e0f7fa;
+  --text-muted: #26c6da;
+  --text-dim: #00838f;
+
+  --accent-primary: #00e5ff;
+  --accent-secondary: #0284c7;
+  --accent-glow: rgba(0, 229, 255, 0.45);
+
+  --timer-bg: rgba(0, 229, 255, 0.1);
+  --timer-ring-bg: rgba(255, 255, 255, 0.08);
+  --timer-ring-fill: #00e5ff;
+  --timer-font: 'Outfit', sans-serif;
+}
+
+/* 🍷 Crimson Moon Theme */
+[data-theme='crimson'] {
+  --bg-main: #140509;
+  --bg-gradient: radial-gradient(circle at 50% 20%, #300812 0%, #1a030a 55%, #0a0104 100%);
+  --card-bg: rgba(42, 8, 16, 0.8);
+  --card-border: rgba(244, 63, 94, 0.35);
+  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.75), 0 0 25px rgba(225, 29, 72, 0.2);
+
+  --text-main: #fff1f2;
+  --text-muted: #fb7185;
+  --text-dim: #be123c;
+
+  --accent-primary: #f43f5e;
+  --accent-secondary: #fbbf24;
+  --accent-glow: rgba(244, 63, 94, 0.45);
+
+  --timer-bg: rgba(244, 63, 94, 0.1);
+  --timer-ring-bg: rgba(255, 255, 255, 0.08);
+  --timer-ring-fill: #f43f5e;
+  --timer-font: 'Space Grotesk', sans-serif;
+}
+
 /* ==========================================================================
    BASE & RESET
    ========================================================================== */
@@ -324,7 +368,8 @@ button {
    ========================================================================== */
 
 .app-root {
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -336,10 +381,13 @@ button {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 24px 20px 48px;
+  padding: 12px 20px 8px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
 }
 
 /* Header */
@@ -430,23 +478,57 @@ button {
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
-  gap: 24px;
-  align-items: start;
+  gap: 16px;
+  align-items: stretch;
+  min-height: 0;
 }
 
 @media (max-width: 900px) {
   .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 16px;
+  align-items: stretch;
+  min-height: 0;
+}
   .btn-label-desktop {
     display: none;
   }
 }
 
-.timer-column, .side-column {
+.timer-column {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  min-height: 0;
+  height: 100%;
+}
+
+/* Timer card stretches to match side-column height (Focus Tasks + Visual Themes) */
+.timer-column .timer-container {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.side-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  min-height: 0;
+}
+/* Dashboard Wrapper: contains grid + full-width ambient bar */
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
 }
 
 /* Glass Card */
@@ -456,7 +538,7 @@ button {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--card-border);
   border-radius: 24px;
-  padding: 24px;
+  padding: 16px;
   box-shadow: var(--card-shadow);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -473,7 +555,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 22px;
+  gap: 12px;
   text-align: center;
 }
 
@@ -481,20 +563,20 @@ button {
 .mode-tabs {
   display: flex;
   background: rgba(0, 0, 0, 0.25);
-  padding: 5px;
-  border-radius: 16px;
+  padding: 4px;
+  border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  gap: 4px;
+  gap: 3px;
 }
 
 .mode-tab {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 16px;
-  border-radius: 12px;
+  padding: 7px 15px;
+  border-radius: 11px;
   color: var(--text-dim);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -514,8 +596,8 @@ button {
 /* Circular Clock Ring */
 .clock-wrapper {
   position: relative;
-  width: 320px;
-  height: 320px;
+  width: 250px;
+  height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -543,12 +625,12 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .time-display {
   font-family: var(--timer-font);
-  font-size: 3.8rem;
+  font-size: 3.2rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-main);
@@ -559,7 +641,7 @@ button {
 
 [data-theme='retro'] .time-display,
 [data-theme='minecraft'] .time-display {
-  font-size: 2.2rem;
+  font-size: 2.1rem;
   letter-spacing: 2px;
 }
 
@@ -576,8 +658,8 @@ button {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
-  padding: 4px 10px;
+  margin-top: 6px;
+  padding: 3px 12px;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 20px;
 }
@@ -605,7 +687,7 @@ button {
 }
 
 .cycle-text {
-  font-size: 0.75rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
   font-weight: 600;
   margin-left: 2px;
@@ -615,7 +697,7 @@ button {
 .timer-controls {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 22px;
 }
 
 .btn-control {
@@ -627,11 +709,16 @@ button {
 }
 
 .btn-primary {
-  width: 72px;
-  height: 72px;
+  width: 82px;
+  height: 82px;
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   color: #0c0817;
   box-shadow: 0 8px 24px var(--accent-glow);
+}
+
+.btn-primary svg {
+  width: 34px;
+  height: 34px;
 }
 
 .btn-primary:hover {
@@ -644,11 +731,16 @@ button {
 }
 
 .btn-secondary {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--card-border);
   color: var(--text-main);
+}
+
+.btn-secondary svg {
+  width: 23px;
+  height: 23px;
 }
 
 .btn-secondary:hover {
@@ -667,11 +759,11 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 18px;
+  padding: 7px 12px;
   background: rgba(0, 0, 0, 0.2);
   border: 1px dashed var(--accent-primary);
-  border-radius: 16px;
-  gap: 12px;
+  border-radius: 12px;
+  gap: 10px;
 }
 
 .active-task-info {
@@ -684,18 +776,18 @@ button {
 }
 
 .active-task-tag {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   text-transform: uppercase;
   background: var(--accent-primary);
   color: #070314;
   font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 6px;
+  padding: 2px 7px;
+  border-radius: 5px;
   white-space: nowrap;
 }
 
 .active-task-title {
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-main);
   white-space: nowrap;
@@ -704,7 +796,7 @@ button {
 }
 
 .active-task-pomos {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   white-space: nowrap;
 }
@@ -1181,7 +1273,7 @@ button {
 
 .theme-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
   gap: 8px;
 }
 
@@ -1189,11 +1281,11 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 10px 6px;
+  gap: 5px;
+  padding: 8px 4px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--card-border);
-  border-radius: 14px;
+  border-radius: 12px;
   transition: all 0.2s ease;
 }
 
@@ -1213,9 +1305,13 @@ button {
 }
 
 .theme-name {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .theme-color-dots {
@@ -1579,25 +1675,172 @@ button {
    ZEN / FULLSCREEN MODE
    ========================================================================== */
 
+.ambient-bar-wrapper {
+  width: 100%;
+}
+
+.app-footer {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  padding: 10px 0;
+}
+
 .zen-mode-active {
   background-color: var(--bg-main) !important;
-  justify-content: center;
-  align-items: center;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  overflow: hidden !important;
 }
 
 .zen-container {
-  max-width: 600px !important;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 !important;
+  max-width: 760px !important;
+  width: 100% !important;
+  height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 24px !important;
+  margin: 0 auto !important;
+}
+
+.zen-container .dashboard-wrapper {
+  flex: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
 }
 
 .zen-grid {
-  grid-template-columns: 1fr !important;
-  width: 100%;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.zen-mode-active .timer-column {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: auto !important;
+}
+
+/* Zen Mode Enlarged & Centered Timer Card */
+.zen-mode-active .timer-container {
+  max-width: 680px !important;
+  width: 100% !important;
+  padding: 32px 40px !important;
+  gap: 24px !important;
+  border-radius: 32px !important;
+  box-shadow: var(--card-shadow), 0 0 70px var(--accent-glow) !important;
+}
+
+.zen-mode-active .clock-wrapper {
+  width: 360px !important;
+  height: 360px !important;
+}
+
+.zen-mode-active .time-display {
+  font-size: 5rem !important;
+  text-shadow: 0 4px 24px var(--accent-glow) !important;
+}
+
+[data-theme='retro'] .zen-mode-active .time-display,
+[data-theme='minecraft'] .zen-mode-active .time-display {
+  font-size: 3.2rem !important;
+}
+
+.zen-mode-active .mode-status-label {
+  font-size: 1.15rem !important;
+  letter-spacing: 2px !important;
+}
+
+.zen-mode-active .cycle-indicator {
+  margin-top: 10px !important;
+  padding: 5px 16px !important;
+  gap: 10px !important;
+  border-radius: 24px !important;
+}
+
+.zen-mode-active .cycle-dot {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.zen-mode-active .cycle-text {
+  font-size: 0.95rem !important;
+}
+
+.zen-mode-active .mode-tabs {
+  padding: 6px !important;
+  border-radius: 18px !important;
+  gap: 6px !important;
+}
+
+.zen-mode-active .mode-tab {
+  padding: 10px 22px !important;
+  font-size: 1.05rem !important;
+  border-radius: 14px !important;
+  gap: 8px !important;
+}
+
+.zen-mode-active .timer-controls {
+  gap: 30px !important;
+}
+
+.zen-mode-active .btn-primary {
+  width: 96px !important;
+  height: 96px !important;
+  box-shadow: 0 10px 32px var(--accent-glow) !important;
+}
+
+.zen-mode-active .btn-primary svg {
+  width: 42px !important;
+  height: 42px !important;
+}
+
+.zen-mode-active .btn-secondary {
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.zen-mode-active .btn-secondary svg {
+  width: 26px !important;
+  height: 26px !important;
+}
+
+.zen-mode-active .active-task-banner {
+  padding: 12px 20px !important;
+  border-radius: 16px !important;
+  gap: 14px !important;
+}
+
+.zen-mode-active .active-task-tag {
+  font-size: 0.8rem !important;
+  padding: 4px 10px !important;
+}
+
+.zen-mode-active .active-task-title {
+  font-size: 1.05rem !important;
+}
+
+.zen-mode-active .active-task-pomos {
+  font-size: 0.95rem !important;
+}
+
+.zen-mode-active .btn-complete-active {
+  padding: 8px 16px !important;
+  font-size: 0.92rem !important;
 }
 
 .btn-exit-zen {
@@ -1617,7 +1860,7 @@ button {
   font-size: 0.88rem;
   font-weight: 600;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
 }
 
 .btn-exit-zen:hover {
@@ -1626,402 +1869,28 @@ button {
   transform: scale(1.04);
 }
 
-/* ==========================================================================
-   FOCUS BUDDY (TAMAGOTCHI PLANT)
-   ========================================================================== */
-
-.focus-buddy-widget {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  cursor: pointer;
-  user-select: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.buddy-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.buddy-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.96rem;
-  font-weight: 600;
-}
-
-.buddy-stage-pill {
-  font-size: 0.76rem;
-  color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.06);
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-weight: 600;
-}
-
-.buddy-content {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  position: relative;
-  padding: 4px 6px;
-}
-
-.floating-heart {
-  position: absolute;
-  top: -10px;
-  left: 28px;
-  color: #f43f5e;
-  fill: #f43f5e;
-  animation: floatUp 0.8s ease-out forwards;
-  pointer-events: none;
-  z-index: 10;
-}
-
-@keyframes floatUp {
-  0% { opacity: 1; transform: translateY(0) scale(0.6); }
-  100% { opacity: 0; transform: translateY(-40px) scale(1.3); }
-}
-
-.buddy-avatar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 68px;
-  height: 68px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--card-border);
-  border-radius: 20px;
-  flex-shrink: 0;
-  transition: transform 0.2s ease;
-}
-
-.buddy-content:hover .buddy-avatar {
-  transform: scale(1.08) rotate(-3deg);
-}
-
-.buddy-avatar.swaying {
-  animation: sway 2.4s ease-in-out infinite;
-}
-
-@keyframes sway {
-  0%, 100% { transform: rotate(-4deg); }
-  50% { transform: rotate(4deg); }
-}
-
-.avatar-emoji {
-  font-size: 26px;
-  line-height: 1;
-}
-
-.pot-base {
-  font-size: 16px;
-  line-height: 1;
-  margin-top: 2px;
-}
-
-.buddy-dialogue {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.buddy-speech-bubble {
-  position: relative;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--card-border);
-  padding: 8px 12px;
-  border-radius: 12px;
-  font-size: 0.84rem;
-  color: var(--text-main);
-  line-height: 1.35;
-}
-
-.buddy-speech-bubble::before {
-  content: '';
-  position: absolute;
-  left: -6px;
-  top: 14px;
-  width: 10px;
-  height: 10px;
-  background: rgba(0, 0, 0, 0.3);
-  border-left: 1px solid var(--card-border);
-  border-bottom: 1px solid var(--card-border);
-  transform: rotate(45deg);
-}
-
-.buddy-label {
-  font-size: 0.72rem;
-  color: var(--text-dim);
-  font-weight: 500;
-  padding-left: 4px;
-}
-
-/* ==========================================================================
-   STATISTICS MODAL & CHART
-   ========================================================================== */
-
-.stats-modal-content {
-  max-width: 620px !important;
-}
-
-.stats-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-@media (max-width: 600px) {
-  .stats-cards-grid {
-    grid-template-columns: 1fr;
+@media (max-height: 800px) {
+  .zen-mode-active .timer-container {
+    padding: 20px 32px !important;
+    gap: 16px !important;
   }
-}
-
-.stat-card {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background: rgba(0, 0, 0, 0.25);
-  padding: 14px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.stat-card-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--text-muted);
-}
-
-.stat-icon-flame {
-  color: #f59e0b;
-}
-
-.stat-icon-trophy {
-  color: #34d399;
-}
-
-.stat-icon-clock {
-  color: #38bdf8;
-}
-
-.stat-card-value {
-  font-size: 1.45rem;
-  font-weight: 800;
-  color: var(--text-main);
-}
-
-.stat-unit {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-muted);
-}
-
-.stat-card-sub {
-  font-size: 0.72rem;
-  color: var(--text-dim);
-}
-
-.progress-bar-container {
-  width: 100%;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  overflow: hidden;
-  margin-top: 2px;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  background: var(--accent-primary);
-  border-radius: 4px;
-  transition: width 0.4s ease;
-}
-
-/* 7-Day Bar Chart */
-.chart-wrapper {
-  background: rgba(0, 0, 0, 0.25);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 20px 16px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.chart-bars-container {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  height: 140px;
-  gap: 8px;
-  padding: 0 8px;
-}
-
-.chart-col {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-}
-
-.chart-bar-outer {
-  flex: 1;
-  width: 100%;
-  max-width: 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  position: relative;
-}
-
-.chart-bar-count {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 4px;
-}
-
-.chart-bar-inner {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.14);
-  border-radius: 6px 6px 0 0;
-  transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
-}
-
-.chart-col:hover .chart-bar-inner {
-  background: var(--accent-primary);
-}
-
-.chart-bar-inner.goal-reached {
-  background: var(--accent-primary);
-  box-shadow: 0 0 10px var(--accent-glow);
-}
-
-.chart-col.is-today .chart-bar-inner {
-  border: 1px solid #ffffff;
-}
-
-.chart-label-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  margin-top: 8px;
-}
-
-.day-name {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-muted);
-}
-
-.chart-col.is-today .day-name {
-  color: var(--text-main);
-  font-weight: 700;
-}
-
-.day-number {
-  font-size: 0.68rem;
-  color: var(--text-dim);
-}
-
-.chart-legend {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  padding-top: 10px;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.legend-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-
-.goal-dot {
-  background: var(--accent-primary);
-}
-
-.today-dot {
-  background: #ffffff;
-}
-
-.stats-quote {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-/* ==========================================================================
-   SHORTCUTS MODAL
-   ========================================================================== */
-
-.shortcuts-modal-content {
-  max-width: 500px !important;
-}
-
-.shortcuts-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.shortcut-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px;
-  background: rgba(0, 0, 0, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  gap: 16px;
-}
-
-.shortcut-kbd {
-  padding: 4px 10px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 6px;
-  font-family: inherit;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--text-main);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  white-space: nowrap;
-}
-
-.shortcut-desc {
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  text-align: right;
-  flex: 1;
-}
-
-.shortcut-tip {
-  font-size: 0.74rem;
-  color: var(--text-dim);
+  .zen-mode-active .clock-wrapper {
+    width: 290px !important;
+    height: 290px !important;
+  }
+  .zen-mode-active .time-display {
+    font-size: 4rem !important;
+  }
+  .zen-mode-active .btn-primary {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  .zen-mode-active .btn-primary svg {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  .zen-mode-active .btn-secondary {
+    width: 50px !important;
+    height: 50px !important;
+  }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Palette } from 'lucide-react';
 import type { Theme } from '../types';
 
@@ -68,6 +68,18 @@ export const ThemeSelector: React.FC<ThemeSelectorProps> = ({ currentTheme, onTh
       name: 'Cyberpunk',
       icon: '🌌',
       previewColors: ['#3b82f6', '#8b5cf6'],
+    },
+    {
+      id: 'ocean',
+      name: 'Deep Ocean',
+      icon: '🌊',
+      previewColors: ['#00e5ff', '#0284c7'],
+    },
+    {
+      id: 'crimson',
+      name: 'Crimson Moon',
+      icon: '🍷',
+      previewColors: ['#f43f5e', '#fbbf24'],
     },
   ];
 

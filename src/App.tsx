@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+﻿import React, { useState, useEffect, useRef, useCallback } from 'react';
 import confetti from 'canvas-confetti';
 import { 
   Settings as SettingsIcon, 
@@ -17,7 +17,6 @@ import { ThemeSelector } from './components/ThemeSelector';
 import { SettingsModal } from './components/SettingsModal';
 import { StatsModal } from './components/StatsModal';
 import { ShortcutsModal } from './components/ShortcutsModal';
-import { FocusBuddy } from './components/FocusBuddy';
 import { playAlarm, playTick, ambientPlayer } from './utils/audio';
 
 const DEFAULT_SETTINGS: PomodoroSettings = {
@@ -33,8 +32,7 @@ const DEFAULT_SETTINGS: PomodoroSettings = {
   ambientSound: 'none',
   ambientVolume: 0.4,
   tickingSound: false,
-  theme: 'lofi',
-  focusBuddyEnabled: true,
+  theme: 'lofi'
 };
 
 const DEFAULT_TASKS: Task[] = [
@@ -442,22 +440,19 @@ export const App: React.FC = () => {
       <div className="ambient-blob blob-3" />
 
       {/* Zen Mode Floating Exit Button */}
-      {isZenMode && (
-        <button
-          className="btn-exit-zen"
-          onClick={handleToggleZenMode}
-          title="Opustit Zen režim (Esc / F)"
-        >
-          <Minimize2 size={18} />
-          <span>Opustit Zen</span>
-        </button>
-      )}
+      <button
+        className={`btn-exit-zen ${isZenMode ? 'visible' : ''}`}
+        onClick={handleToggleZenMode}
+        title="Opustit Zen režim (Esc / F)"
+      >
+        <Minimize2 size={18} />
+        <span>Opustit Zen</span>
+      </button>
 
       {/* Main App Container */}
       <div className={`app-container ${isZenMode ? 'zen-container' : ''}`}>
-        {/* Top Header (Hidden in Zen Mode) */}
-        {!isZenMode && (
-          <header className="app-header">
+        {/* Top Header */}
+        {!isZenMode && (<header className="app-header">
             <div className="header-brand">
               <span className="brand-icon">🍅</span>
               <div className="brand-titles">
@@ -526,79 +521,67 @@ export const App: React.FC = () => {
                 <span className="btn-label-desktop">Nastavení</span>
               </button>
             </div>
-          </header>
-        )}
+          </header>)}
 
-        {/* Dashboard Main Grid */}
-        <main className={`dashboard-grid ${isZenMode ? 'zen-grid' : ''}`}>
-          {/* Left Column: Timer, Focus Buddy & Ambient Sound */}
-          <section className="timer-column">
-            <Timer
-              mode={mode}
-              timeLeft={timeLeft}
-              totalDuration={getDurationForMode(mode)}
-              isRunning={isRunning}
-              onToggle={handleToggleRunning}
-              onReset={handleResetTimer}
-              onSkip={handleSkip}
-              onModeChange={handleModeChange}
-              activeTask={activeTask}
-              onCompleteActiveTask={activeTask && !activeTask.completed ? handleCompleteActiveTask : undefined}
-              cycleCount={cycleCount}
-              maxCycles={settings.longBreakInterval}
-            />
-
-            {!isZenMode && (
-              <>
-                {settings.focusBuddyEnabled && (
-                  <FocusBuddy
-                    todayPomos={todayPomos}
-                    dailyGoal={settings.dailyGoal}
-                    isRunning={isRunning}
-                  />
-                )}
-
-                <AmbientPlayer
-                  ambientSound={settings.ambientSound}
-                  ambientVolume={settings.ambientVolume}
-                  isPlaying={isAmbientPlaying}
-                  onSoundChange={handleAmbientSoundChange}
-                  onVolumeChange={handleAmbientVolumeChange}
-                  onTogglePlay={handleToggleAmbient}
-                />
-              </>
-            )}
-          </section>
-
-          {/* Right Column: Tasks & Theme Selector (Hidden in Zen Mode) */}
-          {!isZenMode && (
-            <section className="side-column">
-              <TaskList
-                tasks={tasks}
-                activeTaskId={activeTaskId}
-                onAddTask={handleAddTask}
-                onToggleTask={handleToggleTask}
-                onDeleteTask={handleDeleteTask}
-                onSelectActiveTask={handleSelectActiveTask}
-                onClearCompleted={handleClearCompleted}
-              />
-
-              <ThemeSelector
-                currentTheme={settings.theme}
-                onThemeChange={(theme: Theme) => setSettings((s) => ({ ...s, theme }))}
+        {/* Dashboard Wrapper: grid + full-width ambient bar */}
+        <div className="dashboard-wrapper">
+          <main className={`dashboard-grid ${isZenMode ? 'zen-grid' : ''}`}>
+            {/* Left Column: Timer */}
+            <section className="timer-column">
+              <Timer
+                mode={mode}
+                timeLeft={timeLeft}
+                totalDuration={getDurationForMode(mode)}
+                isRunning={isRunning}
+                onToggle={handleToggleRunning}
+                onReset={handleResetTimer}
+                onSkip={handleSkip}
+                onModeChange={handleModeChange}
+                activeTask={activeTask}
+                onCompleteActiveTask={activeTask && !activeTask.completed ? handleCompleteActiveTask : undefined}
+                cycleCount={cycleCount}
+                maxCycles={settings.longBreakInterval}
               />
             </section>
-          )}
-        </main>
 
-        {/* Footer (Hidden in Zen Mode) */}
-        {!isZenMode && (
-          <footer className="app-footer">
+            {/* Right Column: Tasks & Theme Selector */}
+            {!isZenMode && (<section className="side-column">
+                <TaskList
+                  tasks={tasks}
+                  activeTaskId={activeTaskId}
+                  onAddTask={handleAddTask}
+                  onToggleTask={handleToggleTask}
+                  onDeleteTask={handleDeleteTask}
+                  onSelectActiveTask={handleSelectActiveTask}
+                  onClearCompleted={handleClearCompleted}
+                />
+
+                <ThemeSelector
+                  currentTheme={settings.theme}
+                  onThemeChange={(theme: Theme) => setSettings((s) => ({ ...s, theme }))}
+                />
+              </section>)}
+          </main>
+
+          {/* Ambient Player — full width below both columns */}
+          {!isZenMode && (<div className="ambient-bar-wrapper">
+            <AmbientPlayer
+              ambientSound={settings.ambientSound}
+              ambientVolume={settings.ambientVolume}
+              isPlaying={isAmbientPlaying}
+              onSoundChange={handleAmbientSoundChange}
+              onVolumeChange={handleAmbientVolumeChange}
+              onTogglePlay={handleToggleAmbient}
+            />
+          </div>)}
+        </div>
+
+        {/* Footer */}
+        {!isZenMode && (<footer className="app-footer">
             <p>
-              Stiskni <kbd className="footer-kbd">Space</kbd> pro Start/Pauzu • <kbd className="footer-kbd">F</kbd> pro Zen režim • <kbd className="footer-kbd">M</kbd> pro hudbu • <kbd className="footer-kbd">?</kbd> pro zkratky
+              Stiskni <kbd className="footer-kbd">Space</kbd> pro Start/Pauzu &bull; <kbd className="footer-kbd">F</kbd> pro Zen re&#382;im &bull; <kbd className="footer-kbd">M</kbd> pro hudbu &bull; <kbd className="footer-kbd">?</kbd> pro zkratky
             </p>
-          </footer>
-        )}
+          </footer>)}
       </div>
 
       {/* Settings Modal */}

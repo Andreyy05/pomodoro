@@ -198,17 +198,6 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               <span>Preferences</span>
             </div>
             <div className="checkbox-options">
-              <label className="checkbox-row">
-                <input
-                  type="checkbox"
-                  checked={settings.focusBuddyEnabled}
-                  onChange={(e) => onUpdateSettings({ focusBuddyEnabled: e.target.checked })}
-                />
-                <div className="checkbox-text">
-                  <span className="checkbox-title">🌱 Focus Buddy (Rostoucí Tamagotchi)</span>
-                  <span className="checkbox-sub">Zobrazit roztomilou rostlinku, která roste s každým dokončeným pomodorem</span>
-                </div>
-              </label>
 
               <label className="checkbox-row">
                 <input

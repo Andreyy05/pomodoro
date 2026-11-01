@@ -1,4 +1,4 @@
-export type TimerMode = 'focus' | 'shortBreak' | 'longBreak';
+﻿export type TimerMode = 'focus' | 'shortBreak' | 'longBreak';
 
 export type Theme = 
   | 'lofi' 
@@ -10,7 +10,9 @@ export type Theme =
   | 'sakura' 
   | 'sunset' 
   | 'nordic' 
-  | 'dracula';
+  | 'dracula'
+  | 'ocean'
+  | 'crimson';
 
 export type AlarmSound = 'retro8bit' | 'lofiBell' | 'digitalWatch' | 'fanfare' | 'marimba';
 
@@ -48,7 +50,6 @@ export interface PomodoroSettings {
   ambientVolume: number; // 0.0 to 1.0
   tickingSound: boolean;
   theme: Theme;
-  focusBuddyEnabled: boolean;
 }
 
 export type DailyStats = Record<string, number>; // date "YYYY-MM-DD" -> count of pomodoros
