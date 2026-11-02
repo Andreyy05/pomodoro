@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    POMODORO FOCUS - CSS DESIGN SYSTEM & THEMES
    ========================================================================== */
 
@@ -1893,4 +1893,41 @@ button {
     width: 50px !important;
     height: 50px !important;
   }
+}
+
+/* Backup and Restore Controls */
+.backup-controls-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btn-backup {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.btn-backup:hover {
+  background: var(--accent-primary);
+  color: #070314;
+  border-color: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
+.backup-status-msg {
+  font-size: 0.84rem;
+  margin-top: 10px;
+  color: #4ade80;
+  font-weight: 500;
 }

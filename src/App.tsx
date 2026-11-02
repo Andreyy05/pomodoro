@@ -592,6 +592,13 @@ export const App: React.FC = () => {
         settings={settings}
         onUpdateSettings={(newVals) => setSettings((s) => ({ ...s, ...newVals }))}
         onResetDefaults={() => setSettings(DEFAULT_SETTINGS)}
+        tasks={tasks}
+        dailyStats={dailyStats}
+        onImportData={(imported) => {
+          if (imported.settings) setSettings((s) => ({ ...s, ...imported.settings }));
+          if (imported.tasks) setTasks(imported.tasks);
+          if (imported.dailyStats) setDailyStats(imported.dailyStats);
+        }}
       />
 
       {/* Productivity Stats Modal */}

@@ -1,6 +1,6 @@
-import React from 'react';
-import { X, Volume2, Bell, Clock, Sliders, Play, RotateCcw } from 'lucide-react';
-import type { PomodoroSettings, AlarmSound } from '../types';
+import React, { useState } from 'react';
+import { X, Volume2, Bell, Clock, Sliders, Play, RotateCcw, Download, Upload, Database } from 'lucide-react';
+import type { PomodoroSettings, AlarmSound, Task, DailyStats } from '../types';
 import { playAlarm } from '../utils/audio';
 
 interface SettingsModalProps {
@@ -9,6 +9,9 @@ interface SettingsModalProps {
   settings: PomodoroSettings;
   onUpdateSettings: (newSettings: Partial<PomodoroSettings>) => void;
   onResetDefaults: () => void;
+  tasks?: Task[];
+  dailyStats?: DailyStats;
+  onImportData?: (imported: { tasks?: Task[]; dailyStats?: DailyStats; settings?: Partial<PomodoroSettings> }) => void;
 }
 
 export const SettingsModal: React.FC<SettingsModalProps> = ({
@@ -17,8 +20,57 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   settings,
   onUpdateSettings,
   onResetDefaults,
+  tasks,
+  dailyStats,
+  onImportData,
 }) => {
+  const [backupMsg, setBackupMsg] = useState('');
   if (!isOpen) return null;
+
+  const handleExport = () => {
+    const backup = {
+      app: 'pomodoro-focus',
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      settings,
+      tasks: tasks || [],
+      dailyStats: dailyStats || {},
+    };
+    const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `pomodoro-backup-${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    setBackupMsg('Backup downloaded successfully! ✅');
+    setTimeout(() => setBackupMsg(''), 4000);
+  };
+
+  const handleImportFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const json = JSON.parse(event.target?.result as string);
+        if (onImportData) {
+          onImportData({
+            tasks: Array.isArray(json.tasks) ? json.tasks : undefined,
+            dailyStats: typeof json.dailyStats === 'object' ? json.dailyStats : undefined,
+            settings: typeof json.settings === 'object' ? json.settings : undefined,
+          });
+          setBackupMsg('Backup restored successfully! 🎉');
+          setTimeout(() => setBackupMsg(''), 4000);
+        }
+      } catch {
+        setBackupMsg('Failed to parse backup JSON file. ❌');
+        setTimeout(() => setBackupMsg(''), 4000);
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  };
 
   const alarmSounds: { id: AlarmSound; label: string; desc: string }[] = [
     { id: 'retro8bit', label: '🕹️ 8-Bit Arcade Fanfare', desc: 'Vintage NES retro gaming win sequence' },
@@ -262,6 +314,36 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 </div>
               </label>
             </div>
+          </div>
+
+          {/* Data & Backup */}
+          <div className="settings-section">
+            <div className="section-title">
+              <Database size={16} />
+              <span>Data & Backup</span>
+            </div>
+            <div className="backup-controls-row">
+              <button
+                type="button"
+                className="btn-backup btn-export"
+                onClick={handleExport}
+                title="Download JSON backup of tasks, stats and settings"
+              >
+                <Download size={14} />
+                <span>Export Data (JSON)</span>
+              </button>
+              <label className="btn-backup btn-import" title="Restore tasks, stats and settings from JSON">
+                <Upload size={14} />
+                <span>Import Data</span>
+                <input
+                  type="file"
+                  accept=".json,application/json"
+                  onChange={handleImportFile}
+                  style={{ display: 'none' }}
+                />
+              </label>
+            </div>
+            {backupMsg && <p className="backup-status-msg">{backupMsg}</p>}
           </div>
         </div>
 
