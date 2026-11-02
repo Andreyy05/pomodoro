@@ -1,4 +1,4 @@
-﻿export type TimerMode = 'focus' | 'shortBreak' | 'longBreak';
+export type TimerMode = 'focus' | 'shortBreak' | 'longBreak';
 
 export type Theme = 
   | 'lofi' 
@@ -25,7 +25,9 @@ export type AmbientSound =
   | 'campfire'
   | 'ocean'
   | 'crickets'
-  | 'whiteNoise';
+  | 'whiteNoise'
+  | 'stream'
+  | 'binaural';
 
 export interface Task {
   id: string;

@@ -234,6 +234,10 @@ class AmbientGenerator {
       this.setupLofiChords();
     } else if (type === 'whiteNoise') {
       this.setupWhiteNoise();
+    } else if (type === 'stream') {
+      this.setupStream();
+    } else if (type === 'binaural') {
+      this.setupBinaural();
     }
   }
 
@@ -772,6 +776,102 @@ class AmbientGenerator {
       clearTimeout(chirpTimer);
       noiseSource.stop();
       noiseSource.disconnect();
+    });
+  }
+
+  private setupStream() {
+    if (!this.ctx || !this.masterGain) return;
+    const ctx = this.ctx;
+
+    // Gentle flowing forest stream
+    const noiseBuffer = this.createNoiseBuffer(5);
+    const noiseSource = ctx.createBufferSource();
+    noiseSource.buffer = noiseBuffer;
+    noiseSource.loop = true;
+
+    const streamFilter = ctx.createBiquadFilter();
+    streamFilter.type = 'bandpass';
+    streamFilter.frequency.setValueAtTime(650, ctx.currentTime);
+    streamFilter.Q.setValueAtTime(1.2, ctx.currentTime);
+
+    const streamGain = ctx.createGain();
+    streamGain.gain.setValueAtTime(0.12, ctx.currentTime);
+
+    noiseSource.connect(streamFilter);
+    streamFilter.connect(streamGain);
+    streamGain.connect(this.masterGain);
+    noiseSource.start();
+
+    // Subtle water ripple modulation
+    const rippleOsc = ctx.createOscillator();
+    rippleOsc.type = 'sine';
+    rippleOsc.frequency.setValueAtTime(0.25, ctx.currentTime);
+
+    const rippleGain = ctx.createGain();
+    rippleGain.gain.setValueAtTime(180, ctx.currentTime);
+    rippleOsc.connect(rippleGain);
+    rippleGain.connect(streamFilter.frequency);
+    rippleOsc.start();
+
+    this.stopFns.push(() => {
+      rippleOsc.stop();
+      rippleOsc.disconnect();
+      noiseSource.stop();
+      noiseSource.disconnect();
+    });
+  }
+
+  private setupBinaural() {
+    if (!this.ctx || !this.masterGain) return;
+    const ctx = this.ctx;
+
+    // Alpha frequency binaural beats (210Hz vs 220Hz = 10Hz Alpha difference)
+    const baseFreq = 210;
+    const beatFreq = 10;
+
+    const oscLeft = ctx.createOscillator();
+    oscLeft.type = 'sine';
+    oscLeft.frequency.setValueAtTime(baseFreq, ctx.currentTime);
+
+    const gainLeft = ctx.createGain();
+    gainLeft.gain.setValueAtTime(0.08, ctx.currentTime);
+
+    const oscRight = ctx.createOscillator();
+    oscRight.type = 'sine';
+    oscRight.frequency.setValueAtTime(baseFreq + beatFreq, ctx.currentTime);
+
+    const gainRight = ctx.createGain();
+    gainRight.gain.setValueAtTime(0.08, ctx.currentTime);
+
+    const merger = ctx.createChannelMerger(2);
+    oscLeft.connect(gainLeft);
+    gainLeft.connect(merger, 0, 0);
+
+    oscRight.connect(gainRight);
+    gainRight.connect(merger, 0, 1);
+
+    merger.connect(this.masterGain);
+    oscLeft.start();
+    oscRight.start();
+
+    // Soft warm harmonic background drone
+    const drone = ctx.createOscillator();
+    drone.type = 'triangle';
+    drone.frequency.setValueAtTime(105, ctx.currentTime);
+    const droneGain = ctx.createGain();
+    droneGain.gain.setValueAtTime(0.03, ctx.currentTime);
+    drone.connect(droneGain);
+    droneGain.connect(this.masterGain);
+    drone.start();
+
+    this.stopFns.push(() => {
+      oscLeft.stop();
+      oscLeft.disconnect();
+      oscRight.stop();
+      oscRight.disconnect();
+      drone.stop();
+      drone.disconnect();
+      merger.disconnect();
     });
   }
 }

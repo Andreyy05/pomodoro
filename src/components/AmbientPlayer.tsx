@@ -29,6 +29,8 @@ export const AmbientPlayer: React.FC<AmbientPlayerProps> = ({
     { id: 'vinyl', label: 'Vinyl', icon: <Disc size={16} /> },
     { id: 'lofiChords', label: 'Lo-Fi', icon: <Music size={16} /> },
     { id: 'whiteNoise', label: 'Noise', icon: <Wind size={16} /> },
+    { id: 'stream', label: 'Stream 🌲', icon: <span style={{ fontSize: '14px', lineHeight: 1 }}>🏞️</span> },
+    { id: 'binaural', label: 'Binaural 🧠', icon: <span style={{ fontSize: '14px', lineHeight: 1 }}>⚡</span> },
   ];
 
   return (
