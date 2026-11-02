@@ -234,6 +234,33 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   <span className="checkbox-sub">Subtle soft clock tick each second while timer runs</span>
                 </div>
               </label>
+
+              <label className="checkbox-row">
+                <input
+                  type="checkbox"
+                  checked={settings.desktopNotifications}
+                  onChange={async (e) => {
+                    const checked = e.target.checked;
+                    if (checked && 'Notification' in window && Notification.permission !== 'granted') {
+                      try {
+                        const perm = await Notification.requestPermission();
+                        if (perm !== 'granted') {
+                          onUpdateSettings({ desktopNotifications: false });
+                          return;
+                        }
+                      } catch {
+                        onUpdateSettings({ desktopNotifications: false });
+                        return;
+                      }
+                    }
+                    onUpdateSettings({ desktopNotifications: checked });
+                  }}
+                />
+                <div className="checkbox-text">
+                  <span className="checkbox-title">Desktop Notifications 🔔</span>
+                  <span className="checkbox-sub">Receive browser alerts when focus or break sessions finish</span>
+                </div>
+              </label>
             </div>
           </div>
         </div>

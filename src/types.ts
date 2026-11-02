@@ -51,6 +51,7 @@ export interface PomodoroSettings {
   ambientSound: AmbientSound;
   ambientVolume: number; // 0.0 to 1.0
   tickingSound: boolean;
+  desktopNotifications: boolean;
   theme: Theme;
 }
 

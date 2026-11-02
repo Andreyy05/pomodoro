@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import confetti from 'canvas-confetti';
 import { 
   Settings as SettingsIcon, 
@@ -32,6 +32,7 @@ const DEFAULT_SETTINGS: PomodoroSettings = {
   ambientSound: 'none',
   ambientVolume: 0.4,
   tickingSound: false,
+  desktopNotifications: true,
   theme: 'lofi'
 };
 
@@ -181,7 +182,7 @@ export const App: React.FC = () => {
   const handleSessionComplete = useCallback(() => {
     playAlarm(settings.alarmSound, settings.alarmVolume);
 
-    if ('Notification' in window && Notification.permission === 'granted') {
+    if (settings.desktopNotifications && 'Notification' in window && Notification.permission === 'granted') {
       const title = mode === 'focus' ? '🍅 Focus Session Complete!' : '✨ Break is Over!';
       const body =
         mode === 'focus'
