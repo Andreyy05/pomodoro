@@ -15,6 +15,7 @@ interface TimerProps {
   onCompleteActiveTask?: () => void;
   cycleCount: number;
   maxCycles: number;
+  onAdjustTime?: (minutes: number) => void;
 }
 
 export const Timer: React.FC<TimerProps> = ({
@@ -30,6 +31,7 @@ export const Timer: React.FC<TimerProps> = ({
   onCompleteActiveTask,
   cycleCount,
   maxCycles,
+  onAdjustTime,
 }) => {
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
@@ -141,6 +143,39 @@ export const Timer: React.FC<TimerProps> = ({
           <SkipForward size={20} />
         </button>
       </div>
+
+      {/* Quick Time Extension Controls */}
+      {onAdjustTime && (
+        <div className="quick-adjust-row">
+          <span className="quick-adjust-label">Rychlé prodloužení:</span>
+          <div className="quick-adjust-buttons">
+            <button
+              type="button"
+              className="btn-quick-adjust"
+              onClick={() => onAdjustTime(1)}
+              title="Přidat 1 minutu k aktuálnímu odpočtu"
+            >
+              +1m
+            </button>
+            <button
+              type="button"
+              className="btn-quick-adjust"
+              onClick={() => onAdjustTime(5)}
+              title="Přidat 5 minut k aktuálnímu odpočtu"
+            >
+              +5m
+            </button>
+            <button
+              type="button"
+              className="btn-quick-adjust"
+              onClick={() => onAdjustTime(10)}
+              title="Přidat 10 minut k aktuálnímu odpočtu"
+            >
+              +10m
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Active Pinned Task Bar */}
       {activeTask && (
