@@ -296,6 +296,10 @@ export const App: React.FC = () => {
     setTimeLeft(getDurationForMode(mode));
   }, [getDurationForMode, mode]);
 
+  const handleAdjustTime = useCallback((minutes: number) => {
+    setTimeLeft((prev) => Math.max(10, prev + minutes * 60));
+  }, []);
+
   const handleSkip = useCallback(() => {
     setIsRunning(false);
     if (mode === 'focus') {
@@ -542,6 +546,7 @@ export const App: React.FC = () => {
                 onCompleteActiveTask={activeTask && !activeTask.completed ? handleCompleteActiveTask : undefined}
                 cycleCount={cycleCount}
                 maxCycles={settings.longBreakInterval}
+                onAdjustTime={handleAdjustTime}
               />
             </section>
 
