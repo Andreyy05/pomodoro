@@ -544,35 +544,35 @@ button {
 /* Mode Tabs */
 .mode-tabs {
   display: flex;
-  background: rgba(0, 0, 0, 0.25);
+  background: #090b10;
   padding: 4px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  gap: 3px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  gap: 4px;
 }
 
 .mode-tab {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 15px;
-  border-radius: 11px;
+  padding: 8px 16px;
+  border-radius: 8px;
   color: var(--text-dim);
   font-size: 0.88rem;
-  font-weight: 500;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+  transition: all 0.15s ease;
 }
 
 .mode-tab:hover {
-  color: var(--text-main);
+  color: #ffffff;
   background: rgba(255, 255, 255, 0.05);
 }
 
 .mode-tab.active {
   background: var(--accent-primary);
-  color: #070314;
+  color: #ffffff;
   font-weight: 700;
-  box-shadow: 0 4px 12px var(--accent-glow);
+  box-shadow: 0 2px 8px var(--accent-glow);
 }
 
 /* Circular Clock Ring */
@@ -598,7 +598,7 @@ button {
 .progress-ring-fill {
   color: var(--timer-ring-fill);
   transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 0 10px var(--accent-glow));
+  filter: drop-shadow(0 0 8px var(--accent-glow));
 }
 
 .clock-content {
@@ -612,25 +612,25 @@ button {
 
 .time-display {
   font-family: var(--timer-font);
-  font-size: 3.2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--text-main);
+  font-size: 3.6rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+  color: #ffffff;
   line-height: 1;
-  text-shadow: 0 4px 16px var(--accent-glow);
   user-select: none;
 }
 
 [data-theme='retro'] .time-display,
 [data-theme='minecraft'] .time-display {
-  font-size: 2.1rem;
+  font-size: 2.2rem;
   letter-spacing: 2px;
 }
 
 .mode-status-label {
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -641,8 +641,9 @@ button {
   align-items: center;
   gap: 8px;
   margin-top: 6px;
-  padding: 3px 12px;
-  background: rgba(0, 0, 0, 0.2);
+  padding: 4px 12px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--card-border);
   border-radius: 20px;
 }
 
@@ -656,7 +657,7 @@ button {
 
 .cycle-dot.filled {
   background: var(--accent-primary);
-  box-shadow: 0 0 8px var(--accent-glow);
+  box-shadow: 0 0 6px var(--accent-glow);
 }
 
 .cycle-dot.active-pulse {
@@ -665,13 +666,13 @@ button {
 
 @keyframes pulseDot {
   0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.4); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 0.7; }
 }
 
 .cycle-text {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
-  font-weight: 600;
+  font-weight: 700;
   margin-left: 2px;
 }
 
