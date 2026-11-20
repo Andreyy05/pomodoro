@@ -680,7 +680,7 @@ button {
 .timer-controls {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 20px;
 }
 
 .btn-control {
@@ -688,25 +688,27 @@ button {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-primary {
-  width: 82px;
-  height: 82px;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  color: #0c0817;
-  box-shadow: 0 8px 24px var(--accent-glow);
+  width: 80px;
+  height: 80px;
+  background: var(--accent-primary);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 6px 20px var(--accent-glow);
 }
 
 .btn-primary svg {
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
 }
 
 .btn-primary:hover {
-  transform: scale(1.06);
-  box-shadow: 0 10px 28px var(--accent-glow);
+  transform: scale(1.05);
+  filter: brightness(1.1);
+  box-shadow: 0 8px 26px var(--accent-glow);
 }
 
 .btn-primary:active {
@@ -714,26 +716,63 @@ button {
 }
 
 .btn-secondary {
-  width: 52px;
-  height: 52px;
-  background: rgba(255, 255, 255, 0.06);
+  width: 50px;
+  height: 50px;
+  background: #181b26;
   border: 1px solid var(--card-border);
-  color: var(--text-main);
+  color: var(--text-muted);
 }
 
 .btn-secondary svg {
-  width: 23px;
-  height: 23px;
+  width: 21px;
+  height: 21px;
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.14);
-  color: var(--accent-secondary);
+  background: #232738;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
 }
 
 .translate-x {
   transform: translateX(2px);
+}
+
+/* Quick Adjust Controls */
+.quick-adjust-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.quick-adjust-label {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.quick-adjust-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-quick-adjust {
+  padding: 3px 9px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: all 0.15s ease;
+}
+
+.btn-quick-adjust:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: var(--accent-primary);
 }
 
 /* Active Pinned Task Banner */
@@ -742,9 +781,10 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 7px 12px;
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px dashed var(--accent-primary);
+  padding: 8px 14px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--accent-primary);
   border-radius: 12px;
   gap: 10px;
 }
@@ -762,15 +802,15 @@ button {
   font-size: 0.68rem;
   text-transform: uppercase;
   background: var(--accent-primary);
-  color: #070314;
-  font-weight: 700;
+  color: #ffffff;
+  font-weight: 800;
   padding: 2px 7px;
   border-radius: 5px;
   white-space: nowrap;
 }
 
 .active-task-title {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: var(--text-main);
   white-space: nowrap;
@@ -779,7 +819,7 @@ button {
 }
 
 .active-task-pomos {
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   color: var(--text-muted);
   white-space: nowrap;
 }
@@ -790,11 +830,11 @@ button {
   gap: 5px;
   padding: 6px 12px;
   background: var(--success);
-  color: #042f20;
+  color: #ffffff;
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: 8px;
-  transition: transform 0.15s ease;
+  transition: all 0.15s ease;
   white-space: nowrap;
 }
 
