@@ -325,42 +325,11 @@ button {
 }
 
 /* ==========================================================================
-   AMBIENT BLUR BLOBS
+   AMBIENT BLOBS (Disabled to prevent faded / blurry AI look)
    ========================================================================== */
 
 .ambient-blob {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(120px);
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.35;
-  transition: background-color 0.5s ease;
-}
-
-.blob-1 {
-  top: -100px;
-  left: 15%;
-  width: 450px;
-  height: 450px;
-  background: var(--accent-primary);
-}
-
-.blob-2 {
-  bottom: 10%;
-  right: 10%;
-  width: 400px;
-  height: 400px;
-  background: var(--accent-secondary);
-}
-
-.blob-3 {
-  top: 40%;
-  left: 50%;
-  width: 350px;
-  height: 350px;
-  background: var(--accent-glow);
-  transform: translate(-50%, -50%);
+  display: none !important;
 }
 
 /* ==========================================================================
@@ -381,10 +350,10 @@ button {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 12px 20px 8px;
+  padding: 14px 20px 10px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   flex: 1;
   min-height: 0;
   height: 100%;
