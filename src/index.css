@@ -1021,17 +1021,17 @@ button {
 .task-input-row {
   display: flex;
   align-items: center;
-  background: rgba(0, 0, 0, 0.3);
+  background: #0d1017;
   border: 1px solid var(--card-border);
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 6px 8px 6px 14px;
   gap: 8px;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .task-input-row:focus-within {
   border-color: var(--accent-primary);
-  box-shadow: 0 0 10px var(--accent-glow);
+  background: #111420;
 }
 
 .task-input {
@@ -1039,19 +1039,21 @@ button {
   background: transparent;
   border: none;
   font-size: 0.92rem;
-  color: var(--text-main);
+  color: #ffffff;
   outline: none;
+  font-weight: 500;
 }
 
 .task-input::placeholder {
-  color: var(--text-dim);
+  color: #64748b;
 }
 
 .pomo-stepper {
   display: flex;
   align-items: center;
   gap: 4px;
-  background: rgba(255, 255, 255, 0.06);
+  background: #161a26;
+  border: 1px solid var(--card-border);
   padding: 4px 8px;
   border-radius: 8px;
   font-size: 0.85rem;
@@ -1061,10 +1063,11 @@ button {
   width: 32px;
   background: transparent;
   border: none;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
   outline: none;
   font-size: 0.85rem;
+  color: #ffffff;
 }
 
 .btn-add-task {
@@ -1073,21 +1076,23 @@ button {
   gap: 4px;
   padding: 7px 14px;
   background: var(--accent-primary);
-  color: #070314;
+  color: #ffffff;
   font-size: 0.85rem;
-  font-weight: 600;
-  border-radius: 10px;
-  transition: all 0.2s ease;
+  font-weight: 700;
+  border-radius: 8px;
+  transition: all 0.15s ease;
 }
 
 .btn-add-task:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
+  background: #232738;
+  color: #64748b;
 }
 
 .btn-add-task:not(:disabled):hover {
-  transform: translateY(-1px);
   filter: brightness(1.1);
+  transform: translateY(-1px);
 }
 
 /* Task Filter Tabs */
@@ -1095,7 +1100,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--card-border);
   padding-bottom: 10px;
 }
 
@@ -1106,27 +1111,36 @@ button {
 
 .filter-btn {
   font-size: 0.8rem;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 8px;
   color: var(--text-dim);
-  transition: all 0.2s ease;
+  background: #0f121a;
+  border: 1px solid var(--card-border);
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.filter-btn:hover {
+  color: #ffffff;
+  background: #161a26;
 }
 
 .filter-btn.active {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-main);
-  font-weight: 600;
+  background: var(--accent-primary);
+  color: #ffffff;
+  border-color: var(--accent-primary);
 }
 
 .btn-clear-completed {
   font-size: 0.78rem;
   color: var(--text-dim);
-  text-decoration: underline;
-  transition: color 0.2s ease;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s ease;
 }
 
 .btn-clear-completed:hover {
-  color: var(--danger);
+  color: #ef4444;
 }
 
 /* Tasks Scroll List */
@@ -1157,38 +1171,45 @@ button {
   align-items: center;
   gap: 12px;
   padding: 10px 14px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #0f121a;
+  border: 1px solid var(--card-border);
   border-radius: 12px;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .task-item:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: #151926;
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
 .task-item.active-target {
   border-color: var(--accent-primary);
-  background: rgba(167, 139, 250, 0.08);
+  background: #151928;
+  box-shadow: 0 0 0 1px var(--accent-primary) inset;
 }
 
 .task-checkbox {
   width: 22px;
   height: 22px;
   border-radius: 6px;
-  border: 2px solid var(--text-dim);
+  border: 2px solid #333a4f;
+  background: #090b10;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #070314;
-  transition: all 0.2s ease;
+  color: #ffffff;
+  transition: all 0.15s ease;
   flex-shrink: 0;
+}
+
+.task-checkbox:hover {
+  border-color: var(--accent-primary);
 }
 
 .task-checkbox.checked {
   background: var(--success);
   border-color: var(--success);
+  color: #ffffff;
 }
 
 .task-content {
@@ -1208,73 +1229,76 @@ button {
 
 .task-title {
   font-size: 0.92rem;
-  font-weight: 500;
-  color: var(--text-main);
+  font-weight: 600;
+  color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .task-item.completed .task-title {
   text-decoration: line-through;
-  color: var(--text-dim);
+  color: #64748b;
 }
 
 .active-badge {
   font-size: 0.68rem;
   background: var(--accent-primary);
-  color: #070314;
-  font-weight: 700;
-  padding: 2px 6px;
+  color: #ffffff;
+  font-weight: 800;
+  padding: 2px 7px;
   border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .task-meta {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
 }
 
 .task-completed-label {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
   color: var(--success);
+  font-weight: 600;
 }
 
 .task-actions {
   display: flex;
   align-items: center;
   gap: 6px;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-}
-
-.task-item:hover .task-actions {
-  opacity: 1;
 }
 
 .btn-task-action {
   padding: 6px;
   border-radius: 8px;
   color: var(--text-dim);
-  transition: all 0.2s ease;
+  background: #141724;
+  border: 1px solid var(--card-border);
+  transition: all 0.15s ease;
 }
 
 .btn-task-action:hover {
-  color: var(--text-main);
-  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  background: #1f2438;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .btn-task-action.btn-active-pin {
   color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  background: #1e1926;
 }
 
 .btn-delete:hover {
-  color: var(--danger);
+  color: #ef4444;
+  border-color: #ef4444;
 }
 
 /* ==========================================================================
