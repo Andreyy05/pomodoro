@@ -462,7 +462,7 @@ export const App: React.FC = () => {
               <span className="brand-icon">🍅</span>
               <div className="brand-titles">
                 <h1 className="brand-title">Pomodoro Focus</h1>
-                <span className="brand-subtitle">Lo-Fi & Retro Aesthetic Hub</span>
+                <span className="brand-subtitle">Minimal & High-Contrast Focus Hub</span>
               </div>
             </div>
 
