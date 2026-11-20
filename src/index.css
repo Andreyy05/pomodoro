@@ -1316,7 +1316,8 @@ button {
   align-items: center;
   gap: 8px;
   font-size: 0.96rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .theme-grid {
@@ -1329,23 +1330,24 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  padding: 8px 4px;
-  background: rgba(255, 255, 255, 0.04);
+  gap: 6px;
+  padding: 9px 4px;
+  background: #0f121a;
   border: 1px solid var(--card-border);
   border-radius: 12px;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .theme-card-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
+  background: #171b28;
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
 }
 
 .theme-card-btn.active {
-  border-color: var(--accent-primary);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 4px 16px var(--accent-glow);
+  border: 2px solid var(--accent-primary);
+  background: #181d2e;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
 }
 
 .theme-icon {
@@ -1354,8 +1356,8 @@ button {
 
 .theme-name {
   font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--text-main);
+  font-weight: 700;
+  color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1371,6 +1373,7 @@ button {
   width: 8px;
   height: 8px;
   border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* ==========================================================================

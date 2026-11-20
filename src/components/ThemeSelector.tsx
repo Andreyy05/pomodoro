@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Palette } from 'lucide-react';
 import type { Theme } from '../types';
 
@@ -11,9 +11,9 @@ export const ThemeSelector: React.FC<ThemeSelectorProps> = ({ currentTheme, onTh
   const themes: { id: Theme; name: string; icon: string; previewColors: [string, string] }[] = [
     {
       id: 'lofi',
-      name: 'Lo-Fi Chill',
-      icon: '📻',
-      previewColors: ['#a78bfa', '#f472b6'],
+      name: 'Studio Dark',
+      icon: '🎯',
+      previewColors: ['#ef4444', '#141620'],
     },
     {
       id: 'minecraft',
