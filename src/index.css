@@ -3,268 +3,268 @@
    ========================================================================== */
 
 :root {
-  /* Default: Lo-Fi Chill Theme */
-  --bg-main: #13111c;
-  --bg-gradient: radial-gradient(circle at 15% 20%, #2e1065 0%, #170d2b 45%, #0d0914 100%);
-  --card-bg: rgba(30, 24, 48, 0.65);
-  --card-border: rgba(167, 139, 250, 0.2);
-  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5);
+  /* Default: Studio Dark / Focus (High-Contrast, Crisp, Non-Faded) */
+  --bg-main: #0a0c10;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, #151824 0%, #0a0c10 75%);
+  --card-bg: #13151f;
+  --card-border: #232738;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 12px 36px -6px rgba(0, 0, 0, 0.65);
   
-  --text-main: #f3f0ff;
-  --text-muted: #a78bfa;
-  --text-dim: #7c6f9e;
+  --text-main: #ffffff;
+  --text-muted: #cbd5e1;
+  --text-dim: #94a3b8;
 
-  --accent-primary: #a78bfa;
-  --accent-secondary: #f472b6;
-  --accent-glow: rgba(167, 139, 250, 0.35);
+  --accent-primary: #ef4444;
+  --accent-secondary: #f97316;
+  --accent-glow: rgba(239, 68, 68, 0.28);
 
-  --timer-bg: rgba(167, 139, 250, 0.1);
-  --timer-ring-bg: rgba(255, 255, 255, 0.08);
-  --timer-ring-fill: #a78bfa;
-  --timer-font: 'Outfit', -apple-system, sans-serif;
+  --timer-bg: #0e1017;
+  --timer-ring-bg: #1e2232;
+  --timer-ring-fill: #ef4444;
+  --timer-font: 'Space Grotesk', -apple-system, sans-serif;
   
-  --success: #34d399;
-  --danger: #f87171;
+  --success: #10b981;
+  --danger: #ef4444;
 }
 
 /* 🕹️ Retro 80s Synthwave Theme */
 [data-theme='retro'] {
-  --bg-main: #070314;
-  --bg-gradient: linear-gradient(180deg, #120428 0%, #060114 70%, #1b002c 100%);
-  --card-bg: rgba(20, 8, 42, 0.85);
-  --card-border: rgba(0, 240, 255, 0.4);
-  --card-shadow: 0 0 25px rgba(255, 0, 127, 0.25), inset 0 0 15px rgba(0, 240, 255, 0.1);
+  --bg-main: #080314;
+  --bg-gradient: linear-gradient(180deg, #16062b 0%, #080314 100%);
+  --card-bg: #140929;
+  --card-border: #00f0ff;
+  --card-shadow: 0 0 20px rgba(0, 240, 255, 0.25), inset 0 0 12px rgba(255, 0, 127, 0.15);
 
   --text-main: #ffffff;
   --text-muted: #00f0ff;
-  --text-dim: #ff007f;
+  --text-dim: #ff66b2;
 
   --accent-primary: #ff007f;
   --accent-secondary: #00f0ff;
-  --accent-glow: rgba(255, 0, 127, 0.6);
+  --accent-glow: rgba(255, 0, 127, 0.45);
 
-  --timer-bg: rgba(255, 0, 127, 0.08);
-  --timer-ring-bg: rgba(0, 240, 255, 0.15);
+  --timer-bg: #100622;
+  --timer-ring-bg: #220e3f;
   --timer-ring-fill: #00f0ff;
   --timer-font: 'Press Start 2P', monospace;
 }
 
 /* ☕ Cozy Coffee Theme */
 [data-theme='coffee'] {
-  --bg-main: #18110b;
-  --bg-gradient: radial-gradient(circle at 50% 20%, #362215 0%, #20130a 60%, #110905 100%);
-  --card-bg: rgba(43, 27, 17, 0.7);
-  --card-border: rgba(217, 119, 6, 0.25);
-  --card-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.6);
+  --bg-main: #120b07;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, #24160e 0%, #120b07 80%);
+  --card-bg: #1c130d;
+  --card-border: #382417;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 12px 36px -6px rgba(0, 0, 0, 0.65);
 
-  --text-main: #fef3c7;
-  --text-muted: #f59e0b;
-  --text-dim: #a16207;
+  --text-main: #ffffff;
+  --text-muted: #fde68a;
+  --text-dim: #f59e0b;
 
-  --accent-primary: #d97706;
+  --accent-primary: #f59e0b;
   --accent-secondary: #fbbf24;
-  --accent-glow: rgba(217, 119, 6, 0.35);
+  --accent-glow: rgba(245, 158, 11, 0.35);
 
-  --timer-bg: rgba(217, 119, 6, 0.1);
-  --timer-ring-bg: rgba(255, 255, 255, 0.08);
+  --timer-bg: #160f0a;
+  --timer-ring-bg: #2b1c13;
   --timer-ring-fill: #f59e0b;
-  --timer-font: 'Outfit', sans-serif;
+  --timer-font: 'Space Grotesk', sans-serif;
 }
 
 /* 🍵 Matcha Zen Theme */
 [data-theme='matcha'] {
-  --bg-main: #0c1712;
-  --bg-gradient: radial-gradient(circle at 30% 15%, #163327 0%, #0d2218 50%, #06120d 100%);
-  --card-bg: rgba(18, 38, 29, 0.7);
-  --card-border: rgba(52, 211, 153, 0.25);
-  --card-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
+  --bg-main: #07100b;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, #112217 0%, #07100b 80%);
+  --card-bg: #0f1d15;
+  --card-border: #1b3526;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 12px 36px -6px rgba(0, 0, 0, 0.65);
 
-  --text-main: #ecfdf5;
-  --text-muted: #34d399;
-  --text-dim: #059669;
+  --text-main: #ffffff;
+  --text-muted: #a7f3d0;
+  --text-dim: #34d399;
 
   --accent-primary: #10b981;
-  --accent-secondary: #6ee7b7;
+  --accent-secondary: #34d399;
   --accent-glow: rgba(16, 185, 129, 0.35);
 
-  --timer-bg: rgba(16, 185, 129, 0.1);
-  --timer-ring-bg: rgba(255, 255, 255, 0.08);
-  --timer-ring-fill: #34d399;
-  --timer-font: 'Outfit', sans-serif;
+  --timer-bg: #0c1811;
+  --timer-ring-bg: #182e21;
+  --timer-ring-fill: #10b981;
+  --timer-font: 'Space Grotesk', sans-serif;
 }
 
 /* 🌌 Midnight Cyber Theme */
 [data-theme='cyber'] {
-  --bg-main: #090d16;
-  --bg-gradient: radial-gradient(circle at 80% 20%, #1e1b4b 0%, #0f172a 50%, #050814 100%);
-  --card-bg: rgba(17, 24, 39, 0.75);
-  --card-border: rgba(99, 102, 241, 0.3);
-  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7);
+  --bg-main: #060812;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, #10162c 0%, #060812 80%);
+  --card-bg: #0d1324;
+  --card-border: #1d2847;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 12px 36px -6px rgba(0, 0, 0, 0.7);
 
-  --text-main: #f8fafc;
-  --text-muted: #818cf8;
-  --text-dim: #64748b;
+  --text-main: #ffffff;
+  --text-muted: #bfdbfe;
+  --text-dim: #60a5fa;
 
-  --accent-primary: #6366f1;
-  --accent-secondary: #38bdf8;
-  --accent-glow: rgba(99, 102, 241, 0.4);
+  --accent-primary: #3b82f6;
+  --accent-secondary: #06b6d4;
+  --accent-glow: rgba(59, 130, 246, 0.35);
 
-  --timer-bg: rgba(99, 102, 241, 0.1);
-  --timer-ring-bg: rgba(255, 255, 255, 0.08);
-  --timer-ring-fill: #38bdf8;
+  --timer-bg: #090e1c;
+  --timer-ring-bg: #16213c;
+  --timer-ring-fill: #06b6d4;
   --timer-font: 'Space Grotesk', sans-serif;
 }
 
 /* ⛏️ Minecraft Overworld Theme */
 [data-theme='minecraft'] {
-  --bg-main: #111a0c;
-  --bg-gradient: radial-gradient(circle at 50% 20%, #253818 0%, #15220f 50%, #0b1307 100%);
-  --card-bg: rgba(26, 42, 18, 0.82);
-  --card-border: rgba(74, 222, 128, 0.3);
-  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.75), inset 0 0 0 2px rgba(90, 154, 45, 0.18);
+  --bg-main: #0c1309;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, #192713 0%, #0c1309 80%);
+  --card-bg: #14210f;
+  --card-border: #283d1e;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 12px 36px -6px rgba(0, 0, 0, 0.75);
 
-  --text-main: #f0fdf4;
-  --text-muted: #86efac;
+  --text-main: #ffffff;
+  --text-muted: #bbf7d0;
   --text-dim: #4ade80;
 
-  --accent-primary: #4ade80;
-  --accent-secondary: #ca8a04;
-  --accent-glow: rgba(74, 222, 128, 0.4);
+  --accent-primary: #22c55e;
+  --accent-secondary: #eab308;
+  --accent-glow: rgba(34, 197, 94, 0.35);
 
-  --timer-bg: rgba(74, 222, 128, 0.08);
-  --timer-ring-bg: rgba(255, 255, 255, 0.08);
-  --timer-ring-fill: #4ade80;
+  --timer-bg: #0f1a0b;
+  --timer-ring-bg: #203318;
+  --timer-ring-fill: #22c55e;
   --timer-font: 'Press Start 2P', monospace;
 }
 
 /* 🌸 Sakura Zen Theme */
 [data-theme='sakura'] {
-  --bg-main: #180e15;
-  --bg-gradient: radial-gradient(circle at 40% 18%, #36172a 0%, #200f1c 50%, #10060e 100%);
-  --card-bg: rgba(46, 22, 38, 0.7);
-  --card-border: rgba(244, 114, 182, 0.3);
-  --card-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.55);
+  --bg-main: #120910;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, #251121 0%, #120910 80%);
+  --card-bg: #1d0f1a;
+  --card-border: #3b1d34;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 12px 36px -6px rgba(0, 0, 0, 0.65);
 
-  --text-main: #fdf2f8;
-  --text-muted: #f472b6;
-  --text-dim: #db2777;
+  --text-main: #ffffff;
+  --text-muted: #fce7f3;
+  --text-dim: #f472b6;
 
-  --accent-primary: #f472b6;
-  --accent-secondary: #fda4af;
-  --accent-glow: rgba(244, 114, 182, 0.4);
+  --accent-primary: #ec4899;
+  --accent-secondary: #f472b6;
+  --accent-glow: rgba(236, 72, 153, 0.35);
 
-  --timer-bg: rgba(244, 114, 182, 0.1);
-  --timer-ring-bg: rgba(255, 255, 255, 0.08);
-  --timer-ring-fill: #f472b6;
-  --timer-font: 'Outfit', sans-serif;
+  --timer-bg: #160b14;
+  --timer-ring-bg: #30172a;
+  --timer-ring-fill: #ec4899;
+  --timer-font: 'Space Grotesk', sans-serif;
 }
 
 /* 🌅 Miami Dusk / Sunset Theme */
 [data-theme='sunset'] {
-  --bg-main: #180c1b;
-  --bg-gradient: linear-gradient(180deg, #3d1434 0%, #230d2d 45%, #0c0413 100%);
-  --card-bg: rgba(43, 17, 44, 0.72);
-  --card-border: rgba(249, 115, 22, 0.3);
-  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7);
+  --bg-main: #120713;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, #270e23 0%, #120713 80%);
+  --card-bg: #1c0d1e;
+  --card-border: #3c1c3f;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 12px 36px -6px rgba(0, 0, 0, 0.7);
 
-  --text-main: #fff7ed;
-  --text-muted: #fb923c;
-  --text-dim: #c084fc;
+  --text-main: #ffffff;
+  --text-muted: #ffedd5;
+  --text-dim: #fb923c;
 
   --accent-primary: #f97316;
-  --accent-secondary: #c084fc;
-  --accent-glow: rgba(249, 115, 22, 0.4);
+  --accent-secondary: #e11d48;
+  --accent-glow: rgba(249, 115, 22, 0.35);
 
-  --timer-bg: rgba(249, 115, 22, 0.1);
-  --timer-ring-bg: rgba(255, 255, 255, 0.08);
+  --timer-bg: #150917;
+  --timer-ring-bg: #311535;
   --timer-ring-fill: #f97316;
   --timer-font: 'Space Grotesk', sans-serif;
 }
 
 /* ❄️ Nordic Frost Theme */
 [data-theme='nordic'] {
-  --bg-main: #0a1320;
-  --bg-gradient: radial-gradient(circle at 50% 15%, #13243d 0%, #0c182a 55%, #050b14 100%);
-  --card-bg: rgba(18, 33, 56, 0.72);
-  --card-border: rgba(56, 189, 248, 0.25);
-  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.65);
+  --bg-main: #060c15;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, #0f1c2e 0%, #060c15 80%);
+  --card-bg: #0c1727;
+  --card-border: #1a2d48;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 12px 36px -6px rgba(0, 0, 0, 0.65);
 
-  --text-main: #f0f9ff;
-  --text-muted: #38bdf8;
-  --text-dim: #0284c7;
+  --text-main: #ffffff;
+  --text-muted: #e0f2fe;
+  --text-dim: #38bdf8;
 
-  --accent-primary: #38bdf8;
-  --accent-secondary: #7dd3fc;
-  --accent-glow: rgba(56, 189, 248, 0.35);
+  --accent-primary: #0284c7;
+  --accent-secondary: #38bdf8;
+  --accent-glow: rgba(2, 132, 199, 0.35);
 
-  --timer-bg: rgba(56, 189, 248, 0.1);
-  --timer-ring-bg: rgba(255, 255, 255, 0.08);
+  --timer-bg: #09121f;
+  --timer-ring-bg: #15273e;
   --timer-ring-fill: #38bdf8;
-  --timer-font: 'Outfit', sans-serif;
+  --timer-font: 'Space Grotesk', sans-serif;
 }
 
 /* 🧛 Dracula Dark Theme */
 [data-theme='dracula'] {
-  --bg-main: #191a24;
-  --bg-gradient: radial-gradient(circle at 35% 20%, #282a36 0%, #1e1f29 60%, #12131a 100%);
-  --card-bg: rgba(40, 42, 54, 0.85);
-  --card-border: rgba(189, 147, 249, 0.35);
-  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7);
+  --bg-main: #13141a;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, #1f202c 0%, #13141a 80%);
+  --card-bg: #1d1e28;
+  --card-border: #313446;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 12px 36px -6px rgba(0, 0, 0, 0.7);
 
-  --text-main: #f8f8f2;
-  --text-muted: #bd93f9;
-  --text-dim: #ff79c6;
+  --text-main: #ffffff;
+  --text-muted: #e9d5ff;
+  --text-dim: #bd93f9;
 
-  --accent-primary: #bd93f9;
+  --accent-primary: #a855f7;
   --accent-secondary: #50fa7b;
-  --accent-glow: rgba(189, 147, 249, 0.4);
+  --accent-glow: rgba(168, 85, 247, 0.35);
 
-  --timer-bg: rgba(189, 147, 249, 0.1);
-  --timer-ring-bg: rgba(255, 255, 255, 0.08);
+  --timer-bg: #171821;
+  --timer-ring-bg: #2c2f40;
   --timer-ring-fill: #50fa7b;
   --timer-font: 'Space Grotesk', sans-serif;
 }
 
 /* 🌊 Deep Ocean Theme */
 [data-theme='ocean'] {
-  --bg-main: #040d1a;
-  --bg-gradient: radial-gradient(circle at 45% 20%, #082846 0%, #04162a 55%, #020912 100%);
-  --card-bg: rgba(6, 26, 48, 0.78);
-  --card-border: rgba(0, 229, 255, 0.3);
-  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.75), 0 0 20px rgba(0, 229, 255, 0.15);
+  --bg-main: #030812;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, #09172d 0%, #030812 80%);
+  --card-bg: #081326;
+  --card-border: #132647;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 12px 36px -6px rgba(0, 0, 0, 0.7);
 
-  --text-main: #e0f7fa;
-  --text-muted: #26c6da;
-  --text-dim: #00838f;
+  --text-main: #ffffff;
+  --text-muted: #cffafe;
+  --text-dim: #22d3ee;
 
-  --accent-primary: #00e5ff;
-  --accent-secondary: #0284c7;
-  --accent-glow: rgba(0, 229, 255, 0.45);
+  --accent-primary: #06b6d4;
+  --accent-secondary: #0ea5e9;
+  --accent-glow: rgba(6, 182, 212, 0.35);
 
-  --timer-bg: rgba(0, 229, 255, 0.1);
-  --timer-ring-bg: rgba(255, 255, 255, 0.08);
-  --timer-ring-fill: #00e5ff;
-  --timer-font: 'Outfit', sans-serif;
+  --timer-bg: #060e1d;
+  --timer-ring-bg: #101f3b;
+  --timer-ring-fill: #06b6d4;
+  --timer-font: 'Space Grotesk', sans-serif;
 }
 
 /* 🍷 Crimson Moon Theme */
 [data-theme='crimson'] {
-  --bg-main: #140509;
-  --bg-gradient: radial-gradient(circle at 50% 20%, #300812 0%, #1a030a 55%, #0a0104 100%);
-  --card-bg: rgba(42, 8, 16, 0.8);
-  --card-border: rgba(244, 63, 94, 0.35);
-  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.75), 0 0 25px rgba(225, 29, 72, 0.2);
+  --bg-main: #0e0205;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, #20060d 0%, #0e0205 80%);
+  --card-bg: #18050b;
+  --card-border: #330b16;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 12px 36px -6px rgba(0, 0, 0, 0.75);
 
-  --text-main: #fff1f2;
-  --text-muted: #fb7185;
-  --text-dim: #be123c;
+  --text-main: #ffffff;
+  --text-muted: #ffe4e6;
+  --text-dim: #fb7185;
 
   --accent-primary: #f43f5e;
-  --accent-secondary: #fbbf24;
-  --accent-glow: rgba(244, 63, 94, 0.45);
+  --accent-secondary: #fb923c;
+  --accent-glow: rgba(244, 63, 94, 0.35);
 
-  --timer-bg: rgba(244, 63, 94, 0.1);
-  --timer-ring-bg: rgba(255, 255, 255, 0.08);
+  --timer-bg: #120408;
+  --timer-ring-bg: #2b0812;
   --timer-ring-fill: #f43f5e;
   --timer-font: 'Space Grotesk', sans-serif;
 }
