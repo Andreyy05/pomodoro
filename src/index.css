@@ -1377,7 +1377,7 @@ button {
 }
 
 /* ==========================================================================
-   SETTINGS MODAL
+   MODALS (Settings, Stats, Shortcuts)
    ========================================================================== */
 
 .modal-backdrop {
@@ -1386,8 +1386,8 @@ button {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -1403,11 +1403,15 @@ button {
   flex-direction: column;
   overflow: hidden;
   padding: 0;
-  animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #111420;
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+  animation: modalPop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes modalPop {
-  from { opacity: 0; transform: scale(0.94); }
+  from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
 }
 
@@ -1415,8 +1419,9 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 18px 24px;
+  background: #141724;
+  border-bottom: 1px solid var(--card-border);
 }
 
 .modal-title {
@@ -1426,28 +1431,35 @@ button {
 }
 
 .modal-title h2 {
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 .btn-close-modal {
   color: var(--text-dim);
   padding: 6px;
   border-radius: 8px;
-  transition: all 0.2s ease;
+  background: #1a1e2e;
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
 }
 
 .btn-close-modal:hover {
-  color: var(--text-main);
-  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  background: #252b40;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .modal-body {
-  padding: 20px 24px;
+  padding: 22px 24px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 22px;
 }
 
 .settings-section {
@@ -1460,8 +1472,8 @@ button {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.92rem;
-  font-weight: 600;
+  font-size: 0.88rem;
+  font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1477,23 +1489,24 @@ button {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  background: rgba(0, 0, 0, 0.25);
-  padding: 10px 14px;
+  background: #0b0d14;
+  padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--card-border);
 }
 
 .duration-input-card label {
   font-size: 0.78rem;
   color: var(--text-dim);
+  font-weight: 600;
 }
 
 .duration-input-card input {
   background: transparent;
   border: none;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--text-main);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
   outline: none;
 }
 
@@ -1504,8 +1517,9 @@ button {
 }
 
 .input-with-suffix span {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--text-dim);
+  font-weight: 600;
 }
 
 /* Alarm Sounds in Modal */
@@ -1520,20 +1534,21 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 10px 14px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0b0d14;
+  border: 1px solid var(--card-border);
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .alarm-sound-item:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: #141724;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .alarm-sound-item.active {
   border-color: var(--accent-primary);
-  background: rgba(167, 139, 250, 0.08);
+  background: #171b2b;
 }
 
 .alarm-radio-content {
@@ -1553,7 +1568,8 @@ button {
 
 .alarm-name {
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .alarm-desc {
@@ -1565,18 +1581,20 @@ button {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 5px 10px;
-  background: rgba(255, 255, 255, 0.08);
+  padding: 6px 12px;
+  background: #161a28;
+  border: 1px solid var(--card-border);
   border-radius: 8px;
   font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--text-main);
-  transition: all 0.2s ease;
+  font-weight: 700;
+  color: #ffffff;
+  transition: all 0.15s ease;
 }
 
 .btn-test-sound:hover {
   background: var(--accent-primary);
-  color: #070314;
+  border-color: var(--accent-primary);
+  color: #ffffff;
 }
 
 .sound-slider-row {
@@ -1623,11 +1641,12 @@ button {
 
 .checkbox-title {
   font-size: 0.88rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .checkbox-sub {
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   color: var(--text-dim);
 }
 
@@ -1636,8 +1655,8 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 16px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid var(--card-border);
+  background: #090b10;
 }
 
 .btn-reset-defaults {
@@ -1646,27 +1665,261 @@ button {
   gap: 6px;
   font-size: 0.82rem;
   color: var(--text-dim);
-  transition: color 0.2s ease;
+  font-weight: 600;
+  transition: color 0.15s ease;
 }
 
 .btn-reset-defaults:hover {
-  color: var(--text-main);
+  color: #ffffff;
 }
 
 .btn-save-modal {
-  padding: 8px 24px;
+  padding: 9px 24px;
   background: var(--accent-primary);
-  color: #070314;
+  color: #ffffff;
   font-size: 0.9rem;
   font-weight: 700;
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 0 4px 14px var(--accent-glow);
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .btn-save-modal:hover {
   transform: translateY(-1px);
   filter: brightness(1.1);
+}
+
+/* Stats Modal Specifics */
+.stats-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  background: #0c0e16;
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+}
+
+.stat-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-card-value {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.stat-unit {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+.stat-card-sub {
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  line-height: 1.3;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 6px;
+  background: #1b2030;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--accent-primary);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.chart-wrapper {
+  background: #0c0e16;
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 18px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.chart-bars-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  height: 140px;
+  padding: 10px 4px 0;
+}
+
+.chart-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  gap: 8px;
+}
+
+.chart-bar-outer {
+  flex: 1;
+  width: 100%;
+  max-width: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+
+.chart-bar-count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #cbd5e1;
+  margin-bottom: 4px;
+  min-height: 16px;
+}
+
+.chart-bar-inner {
+  width: 100%;
+  background: #1e2438;
+  border-radius: 6px 6px 0 0;
+  transition: height 0.4s ease;
+}
+
+.chart-col.is-today .chart-bar-inner {
+  background: var(--accent-primary);
+}
+
+.chart-bar-inner.goal-reached {
+  background: var(--success);
+}
+
+.chart-label-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.day-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-dim);
+}
+
+.chart-col.is-today .day-name {
+  color: var(--accent-primary);
+}
+
+.day-number {
+  font-size: 0.68rem;
+  color: #64748b;
+}
+
+.chart-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  border-top: 1px solid var(--card-border);
+  padding-top: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.goal-dot {
+  background: var(--success);
+}
+
+.today-dot {
+  background: var(--accent-primary);
+}
+
+.stats-quote {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+/* Shortcuts Modal Specifics */
+.shortcuts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.shortcut-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #0c0e16;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  gap: 16px;
+}
+
+.shortcut-kbd {
+  padding: 4px 10px;
+  background: #171b28;
+  border: 1px solid #2b3248;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: inherit;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+}
+
+.shortcut-desc {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-align: right;
+}
+
+.shortcut-tip {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  font-weight: 500;
 }
 
 /* Footer */
@@ -1903,20 +2156,20 @@ button {
   align-items: center;
   gap: 8px;
   padding: 10px 18px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #111420;
+  border: 1px solid var(--card-border);
   border-radius: 14px;
   color: var(--text-main);
   font-size: 0.88rem;
-  font-weight: 600;
+  font-weight: 700;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .btn-exit-zen:hover {
   background: var(--accent-primary);
-  color: #070314;
+  border-color: var(--accent-primary);
+  color: #ffffff;
   transform: scale(1.04);
 }
 
@@ -1960,18 +2213,18 @@ button {
   padding: 9px 16px;
   border-radius: 8px;
   font-size: 0.88rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--text-primary);
-  transition: all 0.2s ease;
+  background: #141724;
+  border: 1px solid var(--card-border);
+  color: #cbd5e1;
+  transition: all 0.15s ease;
   user-select: none;
 }
 
 .btn-backup:hover {
   background: var(--accent-primary);
-  color: #070314;
+  color: #ffffff;
   border-color: var(--accent-primary);
   transform: translateY(-1px);
 }
@@ -1980,5 +2233,5 @@ button {
   font-size: 0.84rem;
   margin-top: 10px;
   color: #4ade80;
-  font-weight: 500;
+  font-weight: 600;
 }
