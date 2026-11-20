@@ -913,26 +913,27 @@ button {
   justify-content: center;
   gap: 6px;
   padding: 10px 8px;
-  background: rgba(255, 255, 255, 0.04);
+  background: #0f121b;
   border: 1px solid var(--card-border);
   border-radius: 12px;
-  color: var(--text-dim);
+  color: var(--text-muted);
   font-size: 0.76rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  font-weight: 600;
+  transition: all 0.15s ease;
 }
 
 .ambient-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-main);
+  background: #171b28;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .ambient-btn.active {
   background: var(--accent-primary);
-  color: #070314;
-  font-weight: 700;
+  color: #ffffff;
+  font-weight: 800;
   border-color: var(--accent-primary);
-  box-shadow: 0 4px 12px var(--accent-glow);
+  box-shadow: 0 3px 12px var(--accent-glow);
 }
 
 .ambient-controls-row {
